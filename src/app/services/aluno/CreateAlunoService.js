@@ -1,6 +1,6 @@
 const ModelAluno = require('../../models/aluno/ModelAluno');
 
-const createServiceAluno = {
+const CreateServiceAluno = {
   createAluno: (nome, email, matricula, dataDeNascimento) => {
     const newAluno = new ModelAluno(nome, email, matricula, dataDeNascimento);
     
@@ -8,4 +8,4 @@ const createServiceAluno = {
   }
 }
 
-module.exports = createServiceAluno;
+module.exports = CreateServiceAluno;
