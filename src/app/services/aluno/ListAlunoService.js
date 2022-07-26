@@ -1,17 +1,17 @@
 const ModelAluno = require('../../models/ModelAluno');
 
 
-const ListAluno = {
+const Alunos = {
     
     listaAlunoService: () => {
         const aluno = new ModelAluno(
-            'Aluno y',
+            'Aluno Y',
             'Mãe Aluno y',
             'Desconhecido',
             'alunoy@gmail.com',
             1,
             '15/03/1988'           
-        )
+        );
 
         const aluno2  = new ModelAluno(
             'Aluno X',
@@ -26,14 +26,13 @@ const ListAluno = {
     },
 
     listaAlunoDados: (alunoNome) => {
-        const listaAluno = ListAluno.listaAlunoService();
-
-        const aluno = listaAluno.find(item = item.nome === nome);
-
+        
+        const listarAluno = Alunos.listaAlunoService();
+        const aluno = listarAluno.find(item => item.nome === alunoNome);
         return aluno;
 
     }
 
 }
 
-module.exports = ModelAluno;
+module.exports = Alunos
