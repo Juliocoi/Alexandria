@@ -1,8 +1,8 @@
-const ModelAluno = require('../../models/aluno/ModelAluno');
+const ModelAluno = require('../../models/ModelAluno');
 
 const CreateServiceAluno = {
-  createAluno: (nome, email, matricula, dataDeNascimento) => {
-    const newAluno = new ModelAluno(nome, email, matricula, dataDeNascimento);
+  createAluno: (matricula, nome, mae, pai, email, dataDeNascimento) => {
+    const newAluno = new ModelAluno(matricula, nome, mae, pai, email, dataDeNascimento);
     
     return newAluno;
   }
