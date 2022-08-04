@@ -1,8 +1,10 @@
-function ModelAluno(nome, email, matricula, dataDeNascimento) {
-    this.nome = nome;
-    this.email = email;
+function ModelAluno(matricula, nome, mae, pai, email, dataDeNascimento) {
     this.matricula = matricula;
-    this.dataDeNascimento = dataDeNascimento;
+    this.nome = nome;
+    this.mae = mae;
+    this.pai = pai;
+    this.email = email;
+    this.dataDeNascimento = dataDeNascimento
 
 }
 
