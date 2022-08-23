@@ -1,4 +1,4 @@
-const ModelAluno = require('../../models/ModelAluno');
+const ModelAluno = require('../../models/aluno/ModelAluno');
 
 
 const Alunos = {
@@ -31,7 +31,7 @@ const Alunos = {
         const aluno = listarAluno.find(item => item.nome === alunoNome);
 
         if (aluno === undefined) {
-            return { 'Erro': 'Aluno não localizado em nossa banco de dados' };
+            return { 'Erro': 'Aluno não localizado em nosso banco de dados' };
         }
 
         return aluno;
@@ -40,4 +40,4 @@ const Alunos = {
 
 }
 
-module.exports = Alunos
+module.exports = Alunos;

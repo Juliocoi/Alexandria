@@ -4,7 +4,7 @@ function ModelAluno(matricula, nome, mae, pai, email, dataDeNascimento) {
     this.mae = mae;
     this.pai = pai;
     this.email = email;
-    this.dataDeNascimento = dataDeNascimento
+    this.dataDeNascimento = dataDeNascimento;
 
 }
 
