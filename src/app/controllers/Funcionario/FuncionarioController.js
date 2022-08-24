@@ -38,7 +38,15 @@ const Controller = {
         const atualizacao = AtualizarAlunoService.atualizar(matricula, nome, mae, pai, email, dataDeNascimento)
 
         response.json(atualizacao)
-    }
+    },
+
+    delete: (request, response) => {
+        const { matricula } = request.params;
+
+        const deletado = DeleteFuncionarioService.delete(matricula);
+
+        response.send(this.deletado);
+}
 
 
 

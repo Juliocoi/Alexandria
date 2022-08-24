@@ -15,5 +15,6 @@ routes.get('/Funcionario', FuncionarioController.index);
 routes.get('/Funcionario/:nome', FuncionarioController.listarFuncionariosNome);
 routes.post('/Funcionario', FuncionarioController.create);
 routes.put('/Funcionario/:matricula', FuncionarioController.atualizar);
+routes.delete('/Funcionario/:matricula', FuncionarioController.delete);
 
 module.exports = routes;
