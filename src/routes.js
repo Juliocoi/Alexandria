@@ -1,18 +1,20 @@
 const Router = require('express');
-const Alunocontroller = require('./app/controllers/aluno/AlunoController');
-const FuncionarioController = require('./app/controllers/Funcionario/FuncionarioController')
+const AlunoController = require('./app/controllers/aluno/AlunoController');
+const FuncionarioController = require('./app/controllers/Funcionario/FuncionarioController');
 
 const routes = new Router();
 
 
-routes.get('/alunos', Alunocontroller.index);
-routes.get('/alunos/:nome', Alunocontroller.listarAlunosNome);
-routes.post('/aluno', Alunocontroller.create);
-routes.put('/aluno/:matricula', Alunocontroller.atualizar);
+routes.get('/aluno', AlunoController.index);
+routes.get('/aluno/:nome', AlunoController.listarAlunosNome);
+routes.post('/aluno', AlunoController.create);
+routes.put('/aluno/:matricula', AlunoController.atualizar);
+routes.delete('/aluno/:matricula', AlunoController.delete);
 
-routes.get('/funcionarios', FuncionarioController.index);
-routes.get('/funcionarios/:nome', FuncionarioController.listarFuncionariosNome)
-routes.post('/funcionario', FuncionarioController.create);
-routes.put('/funcionario/:matricula', FuncionarioController.atualizar)
+routes.get('/Funcionario', FuncionarioController.index);
+routes.get('/Funcionario/:nome', FuncionarioController.listarFuncionariosNome);
+routes.post('/Funcionario', FuncionarioController.create);
+routes.put('/Funcionario/:matricula', FuncionarioController.atualizar);
+routes.delete('/Funcionario/:matricula', FuncionarioController.delete);
 
-module.exports = routes
+module.exports = routes;

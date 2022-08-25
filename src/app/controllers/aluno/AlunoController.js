@@ -1,6 +1,7 @@
 const CreateAlunoService = require('../../services/aluno/CreateAlunoService');
 const ListaAlunoService = require('../../services/aluno/ListAlunoService');
 const AtualizarAlunoService = require('../../services/aluno/AtualizarAlunoService');
+const DeleteAlunoService = require('../../services/aluno/DeleteAlunoService');
 
 const Controller = {
 
@@ -39,6 +40,14 @@ const Controller = {
         const atualizacao = AtualizarAlunoService.atualizar(matricula, nome, mae, pai, email, dataDeNascimento) 
 
         response.json(atualizacao)
+    },
+
+    delete: (request, response) => {
+        const { matricula } = request.params
+    
+        const resultado = DeleteAlunoService.delete(matricula)
+    
+        response.send(resultado)
     }
 
 }
