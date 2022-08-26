@@ -14,7 +14,7 @@ const Controller = {
         
         const { nome } = request.query;
         
-        if (!nome) {
+        if (!{ nome }) {
             return response.status(400).json({'Erro': 'Você precisa indicar um nome válido'});
         }
         

@@ -20,8 +20,8 @@ const Funcionarios = {
             'funcB@gmail.com',
             '06/03/1990'  
         );
-
-        return [funcionario, funcionario2]
+        
+        return [funcionario, funcionario2, funcionario3]
     },
 
     listaFuncionarioDados: (funcionarioNome) => {
