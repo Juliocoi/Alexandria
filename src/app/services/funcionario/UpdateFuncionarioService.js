@@ -1,13 +1,18 @@
-const ListFuncionarioService = require('./ListFuncionarioService');
+import ListFuncionarioService from './ListFuncionarioService';
 
-const AtualizarFuncionario = {
+class AtualizarFuncionario{
 
-    atualizar: (matricula, nome, mae, pai, email, dataDeNascimento) => {
-        const funcionarios = ListFuncionarioService.
-        listaFuncionarioService();
+    constructor() {
+        this.service = new ListFuncionarioService()
+     }
+
+    atualizar(matricula, nome, mae, pai, email, dataDeNascimento){
+        
+
+        const funcionarios = this.service.listaFuncionarioService()
         
         const IDmatriculaFuncionario = funcionarios.findIndex(item => item.matricula === Number(matricula));
-        
+
         if(IDmatriculaFuncionario === -1){
             return {'Erro': 'Funcionario não encontrado em nosso banco de dados'}
         }
@@ -21,4 +26,4 @@ const AtualizarFuncionario = {
    }
 }
 
-module.exports = AtualizarFuncionario;
+export default AtualizarFuncionario;

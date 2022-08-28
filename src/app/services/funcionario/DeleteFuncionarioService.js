@@ -1,18 +1,24 @@
-const ListFuncionarioService = require("../../services/Funcionario/ListFuncionarioService");
+import ListFuncionarioService from './ListFuncionarioService';
 
-const DeleteFuncionarioService = {
-  delete: (matricula) => {
-    const funcionarios = ListFuncionarioService.listaFuncionarioService()
-    const funcionarioIndice = funcionarios.findIndex(item => item.matricula === Number(matricula))
+class DeleteFuncionarioService {
+
+  constructor(){
+    this.service = new ListFuncionarioService()
+  };
+
+  delete(id){
+    const funcionario = this.service.listaFuncionarioService()
+
+    const funcionarioIndice = funcionario.findIndex(item => item.id === Number(id))
 
     if (funcionarioIndice === -1) {
       return { erro: "Funcionario não encontrado" }
     }
 
-    funcionarios.splice(funcionarioIndice, 1)
+    funcionario.splice(funcionarioIndice, 1)
 
     return { mensagem: "Funcionario removido com sucesso" }
   }
 }
 
-module.exports = DeleteFuncionarioService;
+export default DeleteFuncionarioService;

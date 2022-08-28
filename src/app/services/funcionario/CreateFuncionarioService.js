@@ -1,11 +1,14 @@
-const ModelFuncionario = require('../../models/funcionario/ModelFuncionario')
+import v4 from 'uuid';
+import ModelFuncionario from '../../models/usuario/ModelFuncionario';
 
-const CreateServiceFuncionario = {
-    createFuncionario: (matricula, nome, mae, pai, email, dataDeNascimento) => {
-        const newFuncionario = new ModelFuncionario(matricula, nome, mae, pai, email, dataDeNascimento);
+class CreateFuncionarioService {
+    constructor () { };
+
+    createFuncionario(matricula, nome, mae, pai, email, dataDeNascimento){
+        const newFuncionario = new ModelFuncionario(v4(), matricula, nome, mae, pai, email, dataDeNascimento);
 
         return newFuncionario;
     }
 }
 
-module.exports = CreateServiceFuncionario;
+export default CreateFuncionarioService;
