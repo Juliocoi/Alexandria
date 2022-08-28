@@ -1,21 +1,28 @@
-const ListAlunoService = require('./ListAlunoService');
+import ListAlunoService from './ListAlunoService';
 
-const AtualizarAluno = {
-    atualizar: (matricula, nome, mae, pai, email, dataDeNascimento) => {
-        const alunos = ListAlunoService.listaAlunoService();
-        const matriculaAluno = alunos.findIndex(item => item.matricula === Number(matricula));
+class AtualizarAluno{
+    
+    constructor(){
+        this.service = new ListAlunoService()
+    };
 
-        if(matriculaAluno === -1){
+    atualizar(matricula, nome, mae, pai, email, dataDeNascimento){
+
+        const alunos = this.service.listaAlunoService();
+
+        const alunoID = alunos.findIndex(item => item.matricula === Number(matricula));
+
+        if (alunoID === -1){
             return {'Erro': 'Aluno não encontrado em nosso banco de dados'}
         }
-        ////aqui estamos atualizando o índice dentro do array. Seria o mesmo que alunos[0] ou alunos[1], só que uso os dados da busca na const matriculaAluno
-        alunos[matriculaAluno] = { nome, mae, pai, email, dataDeNascimento };
+        
+        alunos[alunoID] = { nome, mae, pai, email, dataDeNascimento };
 
         return {
             matricula,
-            ...alunos[matriculaAluno]
+            ...alunos[alunoID]
         }
     }
 }
 
-module.exports = AtualizarAluno;
+export default AtualizarAluno;
