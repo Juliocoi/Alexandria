@@ -1,8 +1,9 @@
-const ModelFuncionario = require("../../models/funcionario/ModelFuncionario")
+import ModelFuncionario from '../../models/usuario/ModelFuncionario';
 
-const Funcionarios = {
+class Funcionarios{
+    constructor () {};
 
-    listaFuncionarioService: () => {
+    listaFuncionarioService(){
         const funcionario = new ModelFuncionario(
             10,
             'Funcionario A',
@@ -21,21 +22,21 @@ const Funcionarios = {
             '06/03/1990'  
         );
         
-        return [funcionario, funcionario2, funcionario3]
-    },
+        return [funcionario, funcionario2]
+    };
 
-    listaFuncionarioDados: (funcionarioNome) => {
+    listaFuncionarioDados(funcionarioData){
 
         const listarFuncionario = Funcionarios.listaFuncionarioService();
-        const funcionario = listarFuncionario.find(item => item.nome === funcionarioNome);
+        const funcionario = listarFuncionario.find(item => item.nome === funcionarioData);
 
         if(funcionario === undefined){
             return {'Erro': 'Funcionario não localizado em nosso banco de dados'}
-        }
+        };
 
         return funcionario;
     }
 
 }
 
-module.exports = Funcionarios;
+export default Funcionarios;

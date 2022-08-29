@@ -1,8 +1,14 @@
-const ListAlunoService = require("../../services/aluno/ListAlunoService");
+import ListAlunoService from './ListAlunoService';
 
-const DeleteAlunoService = {
-  delete: (matricula) => {
-    const alunos = ListAlunoService.listaAlunoService()
+class DeleteAlunoService{
+
+  constructor(){
+    this.service = new ListAlunoService()
+  };
+
+  delete(matricula){
+    const alunos = this.service.listaAlunoService();
+    
     const alunoIndice = alunos.findIndex(item => item.matricula === Number(matricula))
 
     if (alunoIndice === -1) {
@@ -15,4 +21,4 @@ const DeleteAlunoService = {
   }
 }
 
-module.exports = DeleteAlunoService;
+export default DeleteAlunoService;

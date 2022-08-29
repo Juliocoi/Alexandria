@@ -1,9 +1,10 @@
-const ModelAluno = require('../../models/aluno/ModelAluno');
+import ModelAluno from '../../models/usuario/ModelAluno';
 
+class Alunos {
 
-const Alunos = {
-    
-    listaAlunoService: () => {
+    constructor(){};
+
+    listaAlunoService(){
         const aluno = new ModelAluno(
             1,
             'Aluno Y',
@@ -11,7 +12,7 @@ const Alunos = {
             'Desconhecido',
             'alunoy@gmail.com',
             '15/03/1988'           
-        );
+        )
 
         const aluno2  = new ModelAluno(
             2,
@@ -23,9 +24,9 @@ const Alunos = {
         )
 
         return [aluno, aluno2]
-    },
+    };
 
-    listaAlunoDados: (alunoNome) => {
+    listaAlunoDados(alunoNome){
         
         const listarAluno = Alunos.listaAlunoService();
         const aluno = listarAluno.find(item => item.nome === alunoNome);
@@ -40,4 +41,4 @@ const Alunos = {
 
 }
 
-module.exports = Alunos;
+export default Alunos;

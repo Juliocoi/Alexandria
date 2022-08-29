@@ -1,11 +1,15 @@
-const ModelAluno = require('../../models/aluno/ModelAluno');
+import ModelAluno from '../../models/usuario/ModelAluno';
+import v4 from 'uuid';
 
-const CreateServiceAluno = {
-  createAluno: (matricula, nome, mae, pai, email, dataDeNascimento) => {
-    const newAluno = new ModelAluno(matricula, nome, mae, pai, email, dataDeNascimento);
+class CreateAlunoService {
+  
+  constructor (){};
+
+  createAluno(matricula, nome, mae, pai, email, dataDeNascimento){
+    const newAluno = new ModelAluno(v4(), matricula, nome, mae, pai, email, dataDeNascimento);
     
     return newAluno;
   }
 }
 
-module.exports = CreateServiceAluno;
+export default CreateAlunoService;
