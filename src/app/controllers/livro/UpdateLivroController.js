@@ -1,4 +1,4 @@
-const UpdateLivroService = require('../../services/livro/UpdateLivroService');
+import UpdateLivroService from '../../services/livro/UpdateLivroService';
 
 class UpdateLivroController{
 

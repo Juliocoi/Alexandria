@@ -1,4 +1,4 @@
-const CreateLivroService = require('../../services/livro/CreateLivroService')
+import CreateLivroService from '../../services/livro/CreateLivroService'
 
 class CreateLivroController{
     constructor() {}

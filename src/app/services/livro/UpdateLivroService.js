@@ -1,9 +1,13 @@
-const ListLivroService = require('../../services/livro/ListLivroService');
+import ListLivroService from '../../services/livro/ListLivroService'
 
-const AtualizarLivro = {
+class AtualizarLivro{
+    constructor(){
+        this.service = new ListLivroService()
+    }
 
-    atualizar: (isbn, nome, autor, coautor, editora, anoLancamento, edicao) => {
-        const livros = ListLivroService.listaLivroService();
+    atualizar(isbn, nome, autor, coautor, editora, anoLancamento, edicao){
+        
+        const livros = this.service.listaLivroService();
 
         const IndexISBNLivro = livros.findIndex(item => item.isbn === Number(isbn));
 
@@ -12,7 +16,7 @@ const AtualizarLivro = {
         }
 
         livros[IndexISBNLivro] = {
-            isbn, nome, autor, coautor, editora, anoLancamento, edicao
+            nome, autor, coautor, editora, anoLancamento, edicao
         }
 
         return {
@@ -22,4 +26,4 @@ const AtualizarLivro = {
     }
 }
 
-module.exports = AtualizarLivro;
+export default AtualizarLivro

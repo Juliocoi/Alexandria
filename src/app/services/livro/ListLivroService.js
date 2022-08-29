@@ -1,8 +1,9 @@
-const ModelLivro = require('../../models/livro/ModelLivro');
+import ModelLivro from '../../models/catalogo/ModelLivro'
 
-const Livros = {
+class Livros{
+    constructor(){}
 
-    listaLivroService: () => {
+    listaLivroService(){
         const livro1 = new ModelLivro (
             9788595084759,
             'O Senhor dos Aneis 1',
@@ -34,9 +35,9 @@ const Livros = {
         )
 
         return[livro1, livro2, livro3];
-    },
+    }
 
-    listaLivroNome: (livroNome) => {
+    listaLivroNome(livroNome){
 
         const listarLivros = Livros.listaLivroService();
         const livro = listarLivros.find
@@ -50,4 +51,4 @@ const Livros = {
     }
 }
 
-module.exports = Livros;
+export default Livros
