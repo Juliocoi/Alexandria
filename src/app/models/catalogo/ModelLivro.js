@@ -1,11 +1,35 @@
-function ModelLivro(isbn, nome, autor, coautor, editora, anoLancamento, edicao){
-    this.isbn = isbn;
-	this.nome = nome;
-	this.autor = autor;
-	this.coautor = coautor;
-	this.editora = editora;
-	this.anoLancamento = anoLancamento;
-	this.edicao = edicao;
-}
+import ModelCatalogo from "./ModelCatalogo";
+import Sequelize from "sequelize";
+import database from "../../../config/database";
 
-module.exports = ModelLivro;
+const sequelize = new Sequelize(database);
+
+class ModelLivro extends ModelCatalogo{}
+
+ModelLivro.init(
+	{
+		id: Sequelize.UUIDV4(),
+		isbn: Sequelize.INTEGER,
+		autor: Sequelize.STRING,
+		anoLancamento: Sequelize.DATE,
+		coAutor: Sequelize.STRING,
+		catalogoId: {
+			type: Sequelize.UUIDV4(), //o bd ainda não sabe como gerar esse uuid
+			references: {
+				model: ModelCatalogo,
+				key: 'id',
+				}
+		},
+	},
+	{
+		sequelize,
+		modelName: "catalogos",
+		timestamps: false,
+	}
+);
+
+ModelLivro.hasOne(ModelCatalogo,{
+    foreignKey: "catalogoId"
+});
+
+export default ModelLivro;
