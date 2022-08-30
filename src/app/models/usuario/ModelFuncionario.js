@@ -1,6 +1,6 @@
-const ModelUsuario = require("./ModelUsuario");
+import ModelUsuario from "./ModelUsuario";
 import Sequelize from "sequelize";
-const database = require('../../../config/database');
+import database from "../../../config/database";
 
 const sequelize = new Sequelize(database);
 
@@ -12,7 +12,7 @@ ModelFuncionario.init(
         usuarioId:{
             type: Sequelize.UUIDV4(), //o bd ainda não sabe como gerar esse uuid
             references: {
-                model: Usuario,
+                model: ModelUsuario,
                 key: 'id',
                 }
         },

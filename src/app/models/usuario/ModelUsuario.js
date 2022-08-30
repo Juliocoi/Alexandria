@@ -1,8 +1,7 @@
-const ModelUsuario = require("./ModelUsuario");
-import Sequelize from "sequelize";
+import Sequelize, { Model } from "sequelize";
 import ModelAluno from "./ModelAluno";
 import ModelFuncionario from "./ModelFuncionario";
-const database = require('../../../config/database');
+import database from "../../../config/database";
 
 const sequelize = new Sequelize(database);
 
