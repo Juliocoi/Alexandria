@@ -4,15 +4,13 @@ import database from "../../../config/database";
 
 const sequelize = new Sequelize(database);
 
-class ModelLivro extends ModelCatalogo{}
+class ModelPeriodico extends ModelCatalogo{}
 
-ModelLivro.init(
+ModelPeriodico.init(
 	{
 		id: Sequelize.UUIDV4(),
-		isbn: Sequelize.INTEGER,
-		autor: Sequelize.STRING,
+		issn: Sequelize.INTEGER,
 		anoLancamento: Sequelize.DATE,
-		coAutor: Sequelize.STRING,
 		catalogoId: {
 			type: Sequelize.UUIDV4(), //o bd ainda não sabe como gerar esse uuid
 			references: {
@@ -28,8 +26,8 @@ ModelLivro.init(
 	}
 );
 
-ModelLivro.hasOne(ModelCatalogo,{
+ModelPeriodico.hasOne(ModelCatalogo,{
     foreignKey: "catalogoId"
 });
 
-export default ModelLivro;
+export default ModelPeriodico;
