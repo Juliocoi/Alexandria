@@ -28,7 +28,7 @@ class Alunos {
 
     listaAlunoDados(alunoNome){
         
-        const listarAluno = Alunos.listaAlunoService();
+        const listarAluno = this.listaAlunoService();
         const aluno = listarAluno.find(item => item.nome === alunoNome);
 
         if (aluno === undefined) {

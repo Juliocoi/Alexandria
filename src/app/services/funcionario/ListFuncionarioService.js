@@ -27,7 +27,7 @@ class Funcionarios{
 
     listaFuncionarioDados(funcionarioData){
 
-        const listarFuncionario = Funcionarios.listaFuncionarioService();
+        const listarFuncionario = this.listaFuncionarioService();
         const funcionario = listarFuncionario.find(item => item.nome === funcionarioData);
 
         if(funcionario === undefined){
