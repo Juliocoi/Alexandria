@@ -19,7 +19,6 @@ module.exports = {
         references: {
           model: {
             tableName: "usuarios",
-            schema: "schema" //precisa desse schema?
           },
           key: 'id',
         },
