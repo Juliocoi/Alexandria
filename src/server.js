@@ -1,3 +1,3 @@
 const app = require('./app');
 
-app.listen(3030, () => console.log('Servidor rodando'));
+app.listen(process.env.API_PORT, () => console.log('Servidor rodando'));
