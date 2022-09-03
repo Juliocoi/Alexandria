@@ -4,9 +4,9 @@ import { v4 } from 'uuid';
 class CreatePeriodicoService{
     constructor(){}
 
-    async createPeriodico(issn, anoLancamento, nome, edicao, editora, estante){
+    async createPeriodico(nome, edicao, editora, estante, issn, anoLancamento){
         try{
-        const newPeriodico = await ModelPeriodico.create({id: v4(), issn, anoLancamento, nome, edicao, editora, estante});
+        const newPeriodico = await ModelPeriodico.create({id: v4(), nome, edicao, editora, estante, issn, anoLancamento});
         
         return newPeriodico;
     }
@@ -18,4 +18,4 @@ class CreatePeriodicoService{
     }
 }
 
-export default CreatePeriodicoService
+export default CreatePeriodicoService;

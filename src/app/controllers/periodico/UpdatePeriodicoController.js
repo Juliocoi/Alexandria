@@ -8,9 +8,9 @@ class UpdatePeriodicoController{
     async update(request, response){
         const { id } = request.params;
 
-        const { issn, anoLancamento, nome, edicao, editora, estante } = request.body;
+        const { nome, edicao, editora, estante, issn, anoLancamento } = request.body;
 
-        const atualizacao = await this.service.atualizar(id, issn, anoLancamento, nome, edicao, editora, estante);
+        const atualizacao = await this.service.atualizar(id, nome, edicao, editora, estante, issn, anoLancamento);
 
         return response.json(atualizacao);
     }

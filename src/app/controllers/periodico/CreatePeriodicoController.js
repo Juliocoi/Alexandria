@@ -8,9 +8,9 @@ class CreatePeriodicoController {
 
     async create(request, response) {
 
-        const { issn, anoLancamento, nome, edicao, editora, estante } = request.body;
+        const { nome, edicao, editora, estante, issn, anoLancamento } = request.body;
 
-        const createPeriodico = await this.service.createPeriodico(issn, anoLancamento, nome, edicao, editora, estante);
+        const createPeriodico = await this.service.createPeriodico(nome, edicao, editora, estante, issn, anoLancamento);
 
         return response.status(200).json(createPeriodico);
 

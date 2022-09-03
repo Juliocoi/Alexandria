@@ -3,7 +3,7 @@ import ModelPeriodico from "../../models/catalogo/ModelPeriodico";
 class UpdatePeriodico{
     constructor(){}
 
-    async atualizar(id, issn, anoLancamento, nome, edicao, editora, estante){
+    async atualizar(id, nome, edicao, editora, estante, issn, anoLancamento){
         try{
             const periodico = await ModelPeriodico.findByPk(id);
             
@@ -12,12 +12,12 @@ class UpdatePeriodico{
               } 
               
             const [numeroDeRegistrosAtualizados] = await ModelPeriodico.update({
-                issn, 
-                anoLancamento, 
-                nome, 
-                edicao, 
-                editora, 
-                estante
+              nome, 
+              edicao, 
+              editora, 
+              estante, 
+              issn, 
+              anoLancamento
             },
             {
                 where: { id },
@@ -27,7 +27,7 @@ class UpdatePeriodico{
                 return { mensagem: "Dados iguais, não houve atualização" };
               } else {
                 return {
-                    id, issn, anoLancamento, nome, edicao, editora, estante
+                    id, nome, edicao, editora, estante, issn, anoLancamento
                 };
               }
         } 
