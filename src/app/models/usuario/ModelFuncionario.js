@@ -1,20 +1,21 @@
 import ModelUsuario from "./ModelUsuario";
-import Sequelize from "sequelize";
+import Sequelize, { Model } from "sequelize";
 import database from "../../../config/database";
 
 const sequelize = new Sequelize(database);
 
-class ModelFuncionario extends ModelUsuario {}
+class ModelFuncionario extends Model {}
+
 ModelFuncionario.init(
     {
         id: Sequelize.UUIDV4(),
         matricula: Sequelize.INTEGER,
         usuarioId:{
-            type: Sequelize.UUIDV4(), //o bd ainda não sabe como gerar esse uuid
+            type: Sequelize.UUIDV4(),
             references: {
                 model: ModelUsuario,
                 key: 'id',
-                }
+            }
         },
     },
     {

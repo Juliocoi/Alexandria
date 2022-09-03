@@ -1,10 +1,10 @@
 import ModelCatalogo from "./ModelCatalogo";
-import Sequelize from "sequelize";
+import Sequelize, { Model } from "sequelize";
 import database from "../../../config/database";
 
 const sequelize = new Sequelize(database);
 
-class ModelPeriodico extends ModelCatalogo{}
+class ModelPeriodico extends Model {}
 
 ModelPeriodico.init(
 	{
@@ -12,16 +12,16 @@ ModelPeriodico.init(
 		issn: Sequelize.INTEGER,
 		anoLancamento: Sequelize.DATE,
 		catalogoId: {
-			type: Sequelize.UUIDV4(), //o bd ainda não sabe como gerar esse uuid
+			type: Sequelize.UUIDV4(),
 			references: {
 				model: ModelCatalogo,
 				key: 'id',
-				}
+			}
 		},
 	},
 	{
 		sequelize,
-		modelName: "catalogos",
+		modelName: "periodicos",
 		timestamps: false,
 	}
 );

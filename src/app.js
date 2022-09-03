@@ -1,10 +1,12 @@
-const express = require('express');
-const routes = require('./routes.js');
+import express from 'express';
+import routes from './routes.js';
+import database from './database';
 
 class App {
   constructor() {
     this.server = express();
 
+    this.initializeDatabase();
     this.middlewares();
     this.routes();
   }
@@ -16,6 +18,15 @@ class App {
   routes() {
     this.server.use(routes);
   }
+
+  async initializeDatabase(){
+    try {
+      await database.authenticate();
+      console.log("Banco de dados conectado com sucesso!");
+    } catch (error){
+      console.log("Erro ao conectar ao banco de dados: ", error.message);
+    }
+  }
 }
 
-module.exports = new App().server;
+export default new App().server;
