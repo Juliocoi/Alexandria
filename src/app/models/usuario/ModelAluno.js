@@ -1,20 +1,22 @@
 import ModelUsuario from "./ModelUsuario";
-import Sequelize from "sequelize";
+import Sequelize, { Model } from "sequelize";
 import database from "../../../config/database";
+import { Model } from "sequelize/types";
 
 const sequelize = new Sequelize(database);
 
-class ModelAluno extends ModelUsuario {}
+class ModelAluno extends Model {} //refatoração pro extends do Model
+
 ModelAluno.init(
 	{
 		id: Sequelize.UUIDV4(),
 		matricula: Sequelize.INTEGER,
 		usuarioId:{
-			type: Sequelize.UUIDV4(), //o bd ainda não sabe como gerar esse uuid
+			type: Sequelize.UUIDV4(),
 			references: {
 				model: ModelUsuario,
 				key: 'id',
-				}
+			}
 		},
 	},
 	{
