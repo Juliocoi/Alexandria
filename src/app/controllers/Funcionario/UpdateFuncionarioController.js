@@ -6,12 +6,12 @@ class UpdateFuncionarioController {
         this.service = new UpdateFuncionarioService()
     }
 
-    update(request, response) {
-        const { id } = request.params;
+    async update(request, response) {
+        const { matricula } = request.params;
 
-        const { matricula, nome, mae, pai, email, dataDeNascimento } = request.body;
+        const { id, nome, email, dataDeNascimento, mae, pai} = request.body;
 
-        const atualizacaoFunc = this.service.atualizar(id, matricula, nome, mae, pai, email, dataDeNascimento);
+        const atualizacaoFunc = await this.service.atualizar(id, nome, email, dataDeNascimento, mae, pai);
 
         return response.status(200).json(atualizacaoFunc);
     };
