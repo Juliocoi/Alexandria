@@ -1,44 +1,37 @@
+//confirmar se chamo o model aluno ou usuário
 import ModelAluno from '../../models/usuario/ModelAluno';
 
 class Alunos {
 
     constructor(){};
 
-    listaAlunoService(){
-        const aluno = new ModelAluno(
-            1,
-            'Aluno Y',
-            'Mãe Aluno y',
-            'Desconhecido',
-            'alunoy@gmail.com',
-            '15/03/1988'           
-        )
+    async listaAlunoService(){
+        try {
+            const alunos = await ModelAluno.findAll();
+            return alunos;
 
-        const aluno2  = new ModelAluno(
-            2,
-            'Aluno X',
-            'Mãe Aluco x',
-            'Pai Aluno x',
-            'alunox@gmail.com',
-            '16/03/1988' 
-        )
-
-        return [aluno, aluno2]
+        } catch(error){
+            return { erro: error.message };
+        };
     };
 
-    listaAlunoDados(alunoNome){
+    async listaAlunoDados(alunoNome){
         
-        const listarAluno = this.listaAlunoService();
-        const aluno = listarAluno.find(item => item.nome === alunoNome);
+        try{
+            // SELECT * from alunos WHERE name = ?
+            const aluno = await ModelAluno.findOne({where: { nome: alunoNome }});
 
-        if (aluno === undefined) {
-            return { 'Erro': 'Aluno não localizado em nosso banco de dados' };
-        }
+            if(!aluno){
+                return { message: 'Aluno não encontrado'};
+            }
+            return aluno;
+            
+        } catch(error){
+            return { erro: error.message }
+        };
 
-        return aluno;
-
-    }
-
-}
+    };
+    
+} 
 
 export default Alunos;
