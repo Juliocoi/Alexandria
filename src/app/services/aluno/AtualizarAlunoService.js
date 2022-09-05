@@ -10,18 +10,18 @@ class AtualizarAlunoService {
             const aluno = await ModelAluno.findOne(matricula);
 
             if(!aluno){
-                return { messagem: 'Aluno não encontrado.'}
+                return { menssagem: 'Aluno não encontrado.'}
             }
 
             const [alunoAtualizado] = await ModelAluno.update(
-                { nome, email, dataDeNascimento, mae, pai, matricula }, { where: { id } });
+                { nome, email, dataDeNascimento, mae, pai}, { where: { matricula } });
 
             if (alunoAtualizado === 0) {
                 return { mensagem: "As auterações prentendidas já existem em nosso servidor" };
 
             } else {
 
-                return { id, nome, email, dataDeNascimento, mae, pai, matricula };
+                return { id, nome, email, dataDeNascimento, mae, pai, matricula};
             }
         } catch (error) {
             console.log(error);

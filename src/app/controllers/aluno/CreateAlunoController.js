@@ -7,9 +7,9 @@ class CreateAlunoController {
     };
 
     async create(request, response) {
-        const { matricula, nome, mae, pai, email, dataDeNascimento } = request.body;
+        const { nome, email, dataDeNascimento, mae, pai, matricula } = request.body;
 
-        const createAluno = await this.service.createAluno(matricula, nome, mae, pai, email, dataDeNascimento);
+        const createAluno = await this.service.createAluno(nome, email,dataDeNascimento, mae, pai, matricula);
         return response.status(200).json(createAluno);
 
     }

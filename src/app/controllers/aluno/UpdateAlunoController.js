@@ -9,9 +9,9 @@ class AtualizarAlunoController {
     async atualizar(request, response) {
         const { matricula } = request.params;
 
-        const { nome, mae, pai, email, dataDeNascimento } = request.body;
+        const { id, nome, email, dataDeNascimento, mae, pai } = request.body;
 
-        const atualizacao = await this.service.atualizar(nome, mae, pai, email, dataDeNascimento, matricula);
+        const atualizacao = await this.service.atualizar(nome, email, dataDeNascimento, mae, pai);
 
         response.status(200).json(atualizacao);
     }
