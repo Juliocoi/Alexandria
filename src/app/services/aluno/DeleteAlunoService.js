@@ -1,24 +1,25 @@
-import ListAlunoService from './ListAlunoService';
+import ModelAluno from '../../models/usuario/ModelAluno';
 
 class DeleteAlunoService{
 
-  constructor(){
-    this.service = new ListAlunoService()
+  constructor(){};
+
+  async delete(matricula){
+    try {
+      const aluno = await ModelAluno.findOne(matricula)
+
+      if(!aluno){
+        return {mensagem: 'Aluno não localizado'}
+      }
+
+      const alunoDeletado = await aluno.destroy();
+      return {mensagem: 'Aluno deletado com sucesso: ' + alunoDeletado}
+      
+    } catch (error) {
+      return { erro: error.message };
+    };
   };
 
-  delete(matricula){
-    const alunos = this.service.listaAlunoService();
-    
-    const alunoIndice = alunos.findIndex(item => item.matricula === Number(matricula))
-
-    if (alunoIndice === -1) {
-      return { erro: "Aluno não encontrado" }
-    }
-
-    alunos.splice(alunoIndice, 1)
-
-    return { mensagem: "Aluno removido com sucesso" }
-  }
 }
 
 export default DeleteAlunoService;
