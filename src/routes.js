@@ -1,6 +1,5 @@
 import Router from 'express';
 
-
 import CreateAlunoController from './app/controllers/aluno/CreateAlunoController';
 import ListAllAlunoController from './app/controllers/aluno/ListAllAlunoController';
 import UpdateAlunoController from './app/controllers/aluno/UpdateAlunoController';
@@ -14,6 +13,12 @@ import DeleteFuncionarioController from './app/controllers/Funcionario/DeleteFun
 import CreateLivroController from './app/controllers/livro/CreateLivroController';
 import ListLivroController from './app/controllers/livro/ListLivroController';
 import UpdateLivroController from './app/controllers/livro/UpdateLivroController';
+import DeleteLivrosController from './app/controllers/livro/DeleteLivroController';
+
+import CreatePeriodicoController from './app/controllers/periodico/CreatePeriodicoController';
+import ListPeriodicoController from './app/controllers/periodico/ListPeriodicoController';
+import UpdatePeriodicoController from './app/controllers/periodico/UpdatePeriodicoController';
+import DeletePeriodicoController from './app/controllers/periodico/DeletePeriodicoController';
 
 const routes = new Router();
 
@@ -22,13 +27,11 @@ const listAllAlunoController = new ListAllAlunoController();
 const updateAlunoController = new UpdateAlunoController();
 const deleteAlunoController = new DeleteAlunoController();
 
-
 routes.post('/aluno', (req, resp) => createAlunoController.create(req, resp));
 routes.get('/alunos', (req, resp) => listAllAlunoController.index(req, resp));
-routes.get('/aluno', (req, resp) => listAllAlunoController.listarAlunosNome(req, resp));
+routes.get('/aluno/:nome', (req, resp) => listAllAlunoController.listarAlunosNome(req, resp));
 routes.put('/aluno/:matricula', (req, resp) => updateAlunoController.atualizar(req, resp));
 routes.delete('/aluno/:matricula', (req, resp) => deleteAlunoController.delete(req, resp));
-
 
 const createFuncionarioController = new CreateFuncionarioController();
 const listAllFuncionarioController = new ListAllFuncionarioController();
@@ -38,15 +41,29 @@ const deleteFuncionarioController = new DeleteFuncionarioController();
 routes.post('/funcionario', (req, resp) => createFuncionarioController.create(req, resp));
 routes.get('/funcionarios', (req, resp) => listAllFuncionarioController.index(req, resp));
 routes.get('/funcionario/:nome', (req, resp) => listAllFuncionarioController.listarFuncionariosNome(req, resp));
-routes.put('/funcionario/:id', (req, resp) => updateFuncionarioController.update(req, resp));
-routes.delete('/funcionario/:id', (req, resp) => deleteFuncionarioController.delete(req, resp));
+routes.put('/funcionario/:matricula', (req, resp) => updateFuncionarioController.update(req, resp));
+routes.delete('/funcionario/:matricula', (req, resp) => deleteFuncionarioController.delete(req, resp));
 
 const createLivroController = new CreateLivroController();
 const listLivroController = new ListLivroController();
 const updateLivroController = new UpdateLivroController();
+const deleteLivrosController = new DeleteLivrosController();
 
 routes.post('/livros', (req, resp) => createLivroController.create(req, resp));
 routes.get('/livros', (req, resp) => listLivroController.listAll(req, resp));
-routes.put('/livro', (req, resp) => updateLivroController.atualizar(req, resp));
+routes.get('livro', (req, resp) => listLivroController.listarLivrosNome(req, resp))
+routes.put('/livro/:id', (req, resp) => updateLivroController.atualizar(req, resp));
+routes.delete('/livro/:id', (req, resp) => deleteLivrosController.delete(req, resp));
+
+const createPeriodicoController = new CreatePeriodicoController();
+const listPeriodicoController = new ListPeriodicoController();
+const updatePeriodicoController = new UpdatePeriodicoController();
+const deletePeriodicoController = new DeletePeriodicoController();
+
+routes.post('/periodico', (req, resp) => createPeriodicoController.create(req, resp));
+routes.get('/periodicos', (req, resp) => listPeriodicoController.index(req, resp));
+routes.get('/periodico', (req, resp)=> listPeriodicoController.listarPeriodicosNome(req, resp));
+routes.put('/periodico/:id', (req, resp) => updatePeriodicoController.atualizar(req, resp));
+routes.delete('/periodico/:id', (req, resp) => deletePeriodicoController.delete(req, resp));
 
 export default routes;
