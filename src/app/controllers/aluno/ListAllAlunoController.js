@@ -6,21 +6,19 @@ class ListAlunoController {
         this.service = new ListAlunoService();
     };
 
-    index(request, response) {
-        const listarAlunos = this.service.listaAlunoService();
+    async index(request, response) {
+        const listarAlunos = await this.service.listaAlunoService();
         return response.status(200).json(listarAlunos);
     }
 
-    listarAlunosNome(request, response) {
-
+    async listarAlunosNome(request, response) {
         const { nome } = request.query;
 
-        if (!{ nome }) {
-            return response.status(400).json({ 'Erro': 'Você precisa indicar um nome válido' });
+        if (!nome ) {
+            return response.status(400).json({ Erro: 'Você precisa indicar um nome válido' });
         }
 
-        const aluno = this.service.listaAlunoDados(nome);
-
+        const aluno = await this.service.listaAlunoDados(nome);
         return response.status(200).json(aluno);
     }
 

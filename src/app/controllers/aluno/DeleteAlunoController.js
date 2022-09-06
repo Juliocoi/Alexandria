@@ -2,14 +2,15 @@ import DeleteAlunoService from '../../services/aluno/DeleteAlunoService';
 
 class DeleteAlunoController{
     
-    constructor(){};
+    constructor(){
+        this.service = new DeleteAlunoService()
+    };
 
-    delete(request, response) {
+    async delete(request, response) {
         const { matricula } = request.params
 
-        const resultado = DeleteAlunoService.delete(matricula)
-
-        response.status(200).send(resultado);
+        const resultado = await this.service.delete(matricula)
+        return response.status(200).send(resultado);
     }
 }
 

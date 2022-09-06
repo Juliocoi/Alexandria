@@ -3,38 +3,33 @@ import ModelFuncionario from '../../models/usuario/ModelFuncionario';
 class Funcionarios{
     constructor () {};
 
-    listaFuncionarioService(){
-        const funcionario = new ModelFuncionario(
-            10,
-            'Funcionario A',
-            'Mãe Funcionario A',
-            'Pai Funcionario A',
-            'funcA@gmail.com',
-            '15/07/1995'  
-        );
+    async listaFuncionarioService(){
+        try {
+            const funcionarios = await ModelFuncionario.findAll();
+            return funcionarios;
 
-        const funcionario2 = new ModelFuncionario(
-            20,
-            'Funcionario B',
-            'Mãe Funcionario B',
-            'Pai Funcionario B',
-            'funcB@gmail.com',
-            '06/03/1990'  
-        );
-        
-        return [funcionario, funcionario2]
+        } catch (error) {
+            console.log(error);
+            return {erro: error.message}
+            
+        }
     };
 
-    listaFuncionarioDados(funcionarioData){
+    async listaFuncionarioDados(funcionarioNome){
+        try {
+            const funcionario = await ModelFuncionario.findOne({ where: {name: funcionarioNome} });
 
-        const listarFuncionario = this.listaFuncionarioService();
-        const funcionario = listarFuncionario.find(item => item.nome === funcionarioData);
-
-        if(funcionario === undefined){
-            return {'Erro': 'Funcionario não localizado em nosso banco de dados'}
-        };
-
-        return funcionario;
+            if(!funcionario){
+                return { message: 'Funcionário não encontrado'}
+            }
+            
+            return funcionario;
+            
+        } catch (error) {
+            console.log(error);
+            return { erro: error.message };
+        }
+       
     }
 
 }

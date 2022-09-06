@@ -1,13 +1,21 @@
-import v4 from 'uuid';
 import ModelFuncionario from '../../models/usuario/ModelFuncionario';
+import v4 from 'uuid';
 
 class CreateFuncionarioService {
     constructor () { };
 
-    createFuncionario(matricula, nome, mae, pai, email, dataDeNascimento){
-        const newFuncionario = new ModelFuncionario(v4(), matricula, nome, mae, pai, email, dataDeNascimento);
+    async createFuncionario(nome, email, dataDeNascimento, mae, pai, matricula){
+        
+        try {
+            const newFuncionario = await ModelFuncionario.create({ id: v4(), nome, email, dataDeNascimento, mae, pai, matricula });
 
-        return newFuncionario;
+            return newFuncionario;
+
+        } catch (error) {
+            console.log(error);
+            return { erro: error.message }
+            
+        }
     }
 }
 

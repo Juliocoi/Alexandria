@@ -3,14 +3,13 @@ import DeleteFuncionarioService from '../../services/funcionario/DeleteFuncionar
 class DeleteFuncionarioController {
 
     constructor() {
-
         this.service = new DeleteFuncionarioService();
     };
 
-    delete(request, response){
-        const { id } = request.params;
+    async delete(request, response){
+        const { matricula } = request.params;
 
-        const deletado = this.service.delete(id);
+        const deletado = await this.service.delete(matricula);
 
         return response.send(` Funcionário ${deletado} excluído com sucesso`);
     }

@@ -6,16 +6,15 @@ class AtualizarAlunoController {
         this.service = new AtualizarAlunoService();
     };
 
-    atualizar(request, response) {
+    async atualizar(request, response) {
         const { matricula } = request.params;
 
-        const { nome, mae, pai, email, dataDeNascimento } = request.body;
+        const { id, nome, email, dataDeNascimento, mae, pai } = request.body;
 
-        const atualizacao = AtualizarAlunoService.atualizar(matricula, nome, mae, pai, email, dataDeNascimento)
+        const atualizacao = await this.service.atualizar(nome, email, dataDeNascimento, mae, pai);
 
-        response.status(200).json(atualizacao)
+        response.status(200).json(atualizacao);
     }
-
 
 }
 

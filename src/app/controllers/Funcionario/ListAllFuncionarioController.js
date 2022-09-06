@@ -5,21 +5,21 @@ class ListAllFuncionariosControler {
         this.service = new ListFuncionarioService();
     };
 
-    index(request, response) {
+    async index(request, response) {
 
-        const listarFuncionarios = this.service.listaFuncionarioService();
+        const listarFuncionarios = await this.service.listaFuncionarioService();
 
         return response.status(200).json(listarFuncionarios);
     };
 
-    listarFuncionariosNome(request, response) {
+    async listarFuncionariosNome(request, response) {
         const { nome } = request.query;
 
         if (!nome) {
             return response.status(400).json({ 'Erro': 'Você precisa indicar um nome' });
         }
 
-        const funcionario = this.service.listaFuncionarioDados(nome);
+        const funcionario = await this.service.listaFuncionarioDados(nome);
 
         return response.status(200).json(funcionario);
     }

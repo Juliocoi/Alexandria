@@ -1,23 +1,25 @@
-import ListFuncionarioService from './ListFuncionarioService';
+import ModelFuncionario from "../../models/usuario/ModelFuncionario";
 
 class DeleteFuncionarioService {
 
-  constructor(){
-    this.service = new ListFuncionarioService()
-  };
+  constructor(){};
 
-  delete(id){
-    const funcionario = this.service.listaFuncionarioService()
+  async delete(matricula){
+    try {
+      const funcionario = await ModelFuncionario.findOne(matricula);
 
-    const funcionarioIndice = funcionario.findIndex(item => item.id === Number(id))
+      if (!funcionario) {
+        return { message: 'Funcionário não encontrado.' }
+      };
 
-    if (funcionarioIndice === -1) {
-      return { erro: "Funcionario não encontrado" }
-    }
+      const funcionarioDeletado = await funcionario.destroy();
+      return {mensagem: 'Funcionário deletado com sucesso: ' + funcionarioDeletado}
 
-    funcionario.splice(funcionarioIndice, 1)
-
-    return { mensagem: "Funcionario removido com sucesso" }
+    } catch (error) {
+      console.log(error);
+      return {Message: error.message}
+    };
+    
   }
 }
 
