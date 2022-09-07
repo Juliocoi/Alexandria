@@ -5,8 +5,17 @@ import database from "../../../config/database";
 
 const sequelize = new Sequelize(database);
 
-class ModelUsuario extends Model{}
-
+class ModelUsuario extends Model{
+    constructor(id, nome, email, dataDeNascimento, mae, pai){
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.dataDeNascimento = dataDeNascimento;
+        this.mae = mae;
+        this.pai = pai
+    };
+//class ModelUsuario extends Model{}
+}
 ModelUsuario.init(
     {
         id: Sequelize.UUIDV4(),
@@ -23,7 +32,10 @@ ModelUsuario.init(
     }
 );  
 
-ModelUsuario.belongsTo(ModelAluno);
-ModelUsuario.belongsTo(ModelFuncionario);
+ModelUsuario.hasMany(ModelAluno,{
+    foreignKey: "usuarioId"
+}, ModelFuncionario, {
+    foreignKey: "usuarioId"
+})
 
 export default ModelUsuario;

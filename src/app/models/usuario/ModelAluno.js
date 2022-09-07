@@ -27,8 +27,10 @@ ModelAluno.init(
 );
 
 //aqui faz associação 1:n
-ModelAluno.hasOne(ModelUsuario,{
-    foreignKey: "usuarioId"
-});
+ModelAluno.belongsTo(ModelUsuario)
+
+// {
+//     foreignKey: "usuarioId"
+// });
 
 export default ModelAluno;
