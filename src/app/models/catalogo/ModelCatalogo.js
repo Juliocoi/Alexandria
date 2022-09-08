@@ -1,5 +1,6 @@
-import Sequelize, { Model } from "sequelize";
+import { Sequelize, DataTypes, Model } from "sequelize";
 import database from "../../../config/database";
+
 
 const sequelize = new Sequelize(database);
 
@@ -7,11 +8,28 @@ class ModelCatalogo extends Model{}
 
 ModelCatalogo.init(
     {
-        id: Sequelize.UUIDV4(),
-        nome: Sequelize.STRING,
-        edicao: Sequelize.INTEGER,
-        editora: Sequelize.STRING,
-        estante: Sequelize.STRING,
+        id: {
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
+            primaryKey: true
+                        
+        },
+        nome: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        }, 
+        edicao: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        }, 
+        editora: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        }, 
+        estante: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
     },
     {
         sequelize,
@@ -20,6 +38,4 @@ ModelCatalogo.init(
     }
 );
  
-ModelCatalogo.belongsTo(ModelLivro);
-
 export default ModelCatalogo;
