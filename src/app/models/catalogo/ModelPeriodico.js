@@ -1,4 +1,3 @@
-import ModelCatalogo from "./ModelCatalogo";
 import Sequelize, { Model } from "sequelize";
 import database from "../../../config/database";
 
@@ -8,26 +7,23 @@ class ModelPeriodico extends Model {}
 
 ModelPeriodico.init(
 	{
-		id: Sequelize.UUIDV4(),
+		id: {
+			type: Sequelize.UUID,
+			defaultValue: Sequelize.UUIDV4,
+		},
+		nome: Sequelize.STRING,
+        edicao: Sequelize.INTEGER,
+        editora: Sequelize.STRING,
+        estante: Sequelize.STRING,
 		issn: Sequelize.INTEGER,
 		anoLancamento: Sequelize.DATE,
-		catalogoId: {
-			type: Sequelize.UUIDV4(),
-			references: {
-				model: ModelCatalogo,
-				key: 'id',
-			}
-		},
+		palavraChave: Sequelize.STRING,
 	},
 	{
 		sequelize,
-		modelName: "periodicos",
+		tableName: "periodicos",
 		timestamps: false,
 	}
 );
-
-ModelPeriodico.hasOne(ModelCatalogo,{
-    foreignKey: "catalogoId"
-});
 
 export default ModelPeriodico;

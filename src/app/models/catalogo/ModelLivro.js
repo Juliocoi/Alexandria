@@ -1,4 +1,3 @@
-import ModelCatalogo from "./ModelCatalogo";
 import Sequelize, { Model } from "sequelize";
 import database from "../../../config/database";
 
@@ -8,28 +7,25 @@ class ModelLivro extends Model {}
 
 ModelLivro.init(
 	{
-		id: Sequelize.UUIDV4(),
+		id: {
+			type: Sequelize.UUID,
+			defaultValue: Sequelize.UUIDV4
+		},
+		nome: Sequelize.STRING,
+        edicao: Sequelize.INTEGER,
+        editora: Sequelize.STRING,
+        estante: Sequelize.STRING,
 		isbn: Sequelize.INTEGER,
 		autor: Sequelize.STRING,
 		anoLancamento: Sequelize.DATE,
 		coAutor: Sequelize.STRING,
-		catalogoId: {
-			type: Sequelize.UUIDV4(),
-			references: {
-				model: ModelCatalogo,
-				key: 'id',
-			}
-		},
+		palavraChave: Sequelize.STRING,
 	},
 	{
 		sequelize,
-		modelName: "livros",
+		tableName: "livros",
 		timestamps: false,
 	}
 );
-
-ModelLivro.hasOne(ModelCatalogo,{
-    foreignKey: "catalogoId"
-});
 
 export default ModelLivro;
