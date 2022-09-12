@@ -1,42 +1,50 @@
-import ModelUsuario from "./ModelUsuario";
-import Sequelize, { Model } from "sequelize";
+import { Sequelize, DataTypes, Model } from "sequelize";
 import database from '../../../config/database'
 
 const sequelize = new Sequelize(database);
-class ModelFuncionario extends Model{
-    constructor(idFunc, matricula){
-        super(this.id, this.nome, this.email, dataDeNascimento, this.mae, this.pai)
-        this.idFunc = idFunc;
-        this.matricula = matricula;
-    }
-}
+
+class ModelFuncionario extends Model{};
 
 ModelFuncionario.init(
     {
         id: {
-            type: Sequelize.UUIDV4(),
+            type: DataTypes.UUIDV4,
             primaryKey: true
         },
-        matricula: Sequelize.INTEGER,
-        usuarioId:{
-            type: Sequelize.UUIDV4(),
-            references: {
-                model: ModelUsuario,
-                key: 'id',
-            }
+        nome: {
+            type: DataTypes.STRING(100),
+            allowNull: false
         },
+        email: {
+            type: DataTypes.STRING(45),
+            allowNull: false,
+        },
+        matricula: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            unique: true
+        },
+        dataDeNascimento: {
+            type: DataTypes.DATE,
+            allowNull: false
+        },
+        mae: {
+            type: DataTypes.STRING(100),
+            allowNull: false
+        },
+
+        pai: {
+            type: DataTypes.STRING(100),
+            allowNull: true,
+        },
+
     },
     {
         sequelize,
-        modelName: "funcionarios",
-        timestamps: false, // indica que o banco não terá a coluna de registros(tipo um log para as alterações. Esta coluna é para controle do interno do banco de dados), caso omisso, teremos que criar uma coluna para guardar essas informações (createdAt, updatedAt, deactivatedAt). Essas colunas devem ser add apenas nas migration. Não há necesside de colocá-las na model.
+        modelName: "ModelFuncionario",
+        timestamps: false,
+        tableName: "funcionarios"
     }
 );
-
-//aqui faz o relacionamento 1:n
-ModelFuncionario.belongsTo(ModelUsuario)
-// ,{
-//     foreignKey: "usuarioId"
-// });
 
 export default ModelFuncionario;

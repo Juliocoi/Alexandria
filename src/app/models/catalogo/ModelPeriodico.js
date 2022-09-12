@@ -1,4 +1,5 @@
-import Sequelize, { Model } from "sequelize";
+import ModelCatalogo from "./ModelCatalogo";
+import { Sequelize, DataTypes, Model } from "sequelize";
 import database from "../../../config/database";
 
 const sequelize = new Sequelize(database);
@@ -8,16 +9,26 @@ class ModelPeriodico extends Model {}
 ModelPeriodico.init(
 	{
 		id: {
-			type: Sequelize.UUID,
-			defaultValue: Sequelize.UUIDV4,
+			type: DataTypes.UUIDV4,
+			defaultValue: DataTypes.UUIDV4,
+			primaryKey: true,
 		},
-		nome: Sequelize.STRING,
-        edicao: Sequelize.INTEGER,
-        editora: Sequelize.STRING,
-        estante: Sequelize.STRING,
-		issn: Sequelize.INTEGER,
-		anoLancamento: Sequelize.DATE,
-		palavraChave: Sequelize.STRING,
+		issn: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+		},
+		anoLancamento: {
+			type: DataTypes.DATE,
+			allowNull: false,
+		},
+		catalogoId: {
+			type: DataTypes.UUID,
+			defaultValue: DataTypes.UUIDV4,
+			references: {
+				model: ModelCatalogo,
+				key: 'id',
+			}
+		},
 	},
 	{
 		sequelize,
@@ -25,5 +36,11 @@ ModelPeriodico.init(
 		timestamps: false,
 	}
 );
+
+ModelPeriodico.belongsTo(ModelCatalogo);
+
+ModelCatalogo.hasMany(ModelPeriodico, {
+	foreignKey: "catalogoId"
+})
 
 export default ModelPeriodico;
