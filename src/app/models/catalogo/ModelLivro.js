@@ -40,7 +40,7 @@ ModelLivro.init(
 	},
 	{
 		sequelize,
-		modelName: "livros",
+		tableName: "livros",
 		timestamps: false,
 	}
 );
@@ -51,4 +51,4 @@ ModelCatalogo.hasMany(ModelLivro, {
 	foreignKey: "catalogoId"
 });
 
-export default ModelLivro;
+
