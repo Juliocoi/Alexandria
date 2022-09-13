@@ -40,10 +40,11 @@ ModelLivro.init(
 	},
 	{
 		sequelize,
-		modelName: "livros",
+		tableName: "livros",
 		timestamps: false,
 	}
 );
+
 
 ModelLivro.belongsTo(ModelCatalogo);
 

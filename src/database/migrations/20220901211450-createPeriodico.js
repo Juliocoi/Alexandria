@@ -9,6 +9,22 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
       },
+      nome: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      edicao: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      editora: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      estante: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       issn: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -17,16 +33,9 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      catalogoId:{ //foreign key
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
-        references: {
-          model: {
-            tableName: "catalogos",
-          },
-          key: 'id',
-        },
-        allowNull: false
+      palavraChave: {
+        type: Sequelize.STRING,
+        allowNull: true,
       }
     }); 
   },
