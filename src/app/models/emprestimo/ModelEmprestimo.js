@@ -46,9 +46,8 @@ ModelEmprestimo.init(
     },   
     {
         sequelize,
-        modelName: 'ModelEmprestimo',
+        modelName: 'emprestimo',
         timestamps: false,
-        tableName: 'emprestimo'
     }
 )
 
