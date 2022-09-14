@@ -25,11 +25,11 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      nomeMae:{
+      mae:{
         type: Sequelize.STRING,
         allowNull: false,
       },
-      nomePai:{
+      pai:{
         type: Sequelize.STRING,
         allowNull: true,
       }

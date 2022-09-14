@@ -9,10 +9,6 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
       },
-      matricula: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
       nome: {
         type: Sequelize.STRING,
         allowNull: false
@@ -21,15 +17,19 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      matricula: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
       dataDeNascimento: {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      nomeMae:{
+      mae:{
         type: Sequelize.STRING,
         allowNull: false,
       },
-      nomePai:{
+      pai:{
         type: Sequelize.STRING,
         allowNull: true,
       }
