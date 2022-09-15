@@ -32,7 +32,7 @@ ModelPeriodico.init(
 	},
 	{
 		sequelize,
-		modelName: "periodicos",
+		tableName: "periodicos",
 		timestamps: false,
 	}
 );
