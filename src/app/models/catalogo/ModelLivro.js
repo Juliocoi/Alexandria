@@ -40,7 +40,7 @@ ModelLivro.init(
 	},
 	{
 		sequelize,
-		tableName: "livros",
+		modelName: "livros",
 		timestamps: false,
 	}
 );

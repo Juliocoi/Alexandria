@@ -41,9 +41,8 @@ ModelFuncionario.init(
     },
     {
         sequelize,
-        modelName: "ModelFuncionario",
+        modelName: "funcionarios",
         timestamps: false,
-        tableName: "funcionarios"
     }
 );
 
