@@ -1,8 +1,6 @@
-//confirmar se chamo o model aluno ou usuário
 import ModelAluno from '../../models/usuario/ModelAluno';
 
 class Alunos {
-
     constructor(){};
 
     async listaAlunoService(){
@@ -11,15 +9,47 @@ class Alunos {
             return alunos;
 
         } catch(error){
+            console.log(error);
             return { erro: error.message };
         };
     };
 
-    async listaAlunoDados(alunoNome){
+    async listaAlunoMatricula(matricula){
+        try {
+            const aluno = await ModelAluno.findOne({
+                where: {
+                    matricula,
+                }
+            });
+
+            return aluno;
+
+        } catch (error) {
+            console.log(error)
+            return {error: error.message}
+        }
+    };
+
+    async listaAlunoId(id) {
+        try {
+            const aluno = await ModelAluno.findOne({
+                where: {
+                    id,
+                }
+            });
+
+            return aluno;
+        } catch (error) {
+            console.log(error)
+            return { error: error.message }
+        }
+    };
+
+    async listaAlunoDados(Nome){
         
         try{
             // SELECT * from alunos WHERE name = ?
-            const aluno = await ModelAluno.findOne({where: { nome: alunoNome }});
+            const aluno = await ModelAluno.findOne({where: { nome: Nome }});
 
             if(!aluno){
                 return { message: 'Aluno não encontrado'};
@@ -28,8 +58,7 @@ class Alunos {
             
         } catch(error){
             return { erro: error.message }
-        };
-
+        }
     };
     
 } 

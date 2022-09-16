@@ -1,5 +1,4 @@
 import CreateAlunoService from '../../services/aluno/CreateAlunoService';
-
 class CreateAlunoController {
 
     constructor(){
@@ -7,11 +6,10 @@ class CreateAlunoController {
     };
 
     async create(request, response) {
-        const { nome, email, dataDeNascimento, mae, pai, matricula } = request.body;
+        const { matricula, nome, email, senha, dataDeNascimento, mae, pai} = request.body;
 
-        const createAluno = await this.service.createAluno(nome, email,dataDeNascimento, mae, pai, matricula);
+        const createAluno = await this.service.createAluno(matricula, nome, email, senha, dataDeNascimento, mae, pai);
         return response.status(200).json(createAluno);
-
     }
 
 };

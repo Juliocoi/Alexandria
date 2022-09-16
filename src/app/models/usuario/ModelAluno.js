@@ -24,6 +24,10 @@ ModelAluno.init(
 			type: DataTypes.STRING(45),
 			allowNull: false,
 		},
+		senha:{
+			type: DataTypes.STRING(64),
+			allowNull: false
+		},
 		dataDeNascimento:{
 			type: DataTypes.DATE,
 			allowNull: false
@@ -40,7 +44,7 @@ ModelAluno.init(
 	{
 		sequelize,
 		modelName: "ModelAluno",
-		timestamps: true, // indica que o banco terá a coluna de registros(tipo um log para as alterações. Esta coluna é para controle do interno do banco de dados), caso omisso, teremos que criar uma coluna para guardar essas informações (createdAt, updatedAt, deactivatedAt). Essas colunas devem ser add apenas nas migration. Não há necesside de colocá-las na model.
+		timestamps: false,
 		tableName: 'Alunos'
 	}
 );
