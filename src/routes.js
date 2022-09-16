@@ -20,6 +20,9 @@ import ListPeriodicoController from './app/controllers/periodico/ListPeriodicoCo
 import UpdatePeriodicoController from './app/controllers/periodico/UpdatePeriodicoController';
 import DeletePeriodicoController from './app/controllers/periodico/DeletePeriodicoController';
 
+import SessionAlunoController from './app/controllers/auth/SessionAlunoController';
+import ValidarTokenSessao from './Middlewares/ValidarTokenSessao';
+
 const routes = new Router();
 
 const createAlunoController = new CreateAlunoController();
@@ -65,5 +68,11 @@ routes.get('/periodicos', (req, resp) => listPeriodicoController.index(req, resp
 routes.get('/periodico', (req, resp)=> listPeriodicoController.listarPeriodicosNome(req, resp));
 routes.put('/periodico/:id', (req, resp) => updatePeriodicoController.atualizar(req, resp));
 routes.delete('/periodico/:id', (req, resp) => deletePeriodicoController.delete(req, resp));
+
+//Rota para criar sessão de aluno. [IMPORTANTE](ver posição correta no futuro)
+routes.post('/session', (req, resp) => SessionAlunoController.create(req, resp));
+
+//middleware global - está no local errado, verificar antes do commit
+routes.use(ValidarTokenSessao);
 
 export default routes;

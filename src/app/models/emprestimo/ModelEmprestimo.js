@@ -46,9 +46,35 @@ ModelEmprestimo.init(
     },   
     {
         sequelize,
-        modelName: 'emprestimo',
+        modelName: 'ModelEmprestimo',
         timestamps: false,
+        tableName: 'Emprestimo'
     }
-)
+);
+
+ModelAluno.hasOne(ModelEmprestimo, {
+    foreignKey: {
+        name:'emprestimo_Aluno_id',
+        allowNull: false    
+    }
+});
+
+ModelFuncionario.hasOne(ModelEmprestimo, {
+    foreignKey: {
+        name:'emprestimo_Funcionario_id',
+        allowNull: false
+    }
+});
+
+ModelLivro.hasOne(ModelEmprestimo, {
+    foreignKey: {
+        name:'emprestimo_Livro_id',
+        allowNull: false
+    }
+});
+
+ModelEmprestimo.belongsTo(ModelAluno);
+ModelEmprestimo.belongsTo(ModelFuncionario);
+ModelEmprestimo.belongsTo(ModelLivro);
 
 export default ModelEmprestimo;
