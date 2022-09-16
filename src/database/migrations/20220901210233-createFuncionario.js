@@ -9,21 +9,30 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
       },
+      nome: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      email:{
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       matricula: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      usuarioId:{ //foreign key
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
-        references: {
-          model: {
-            tableName: "usuarios",
-          },
-          key: 'id',
-        },
-        allowNull: false
-      } 
+      dataDeNascimento: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      mae:{
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      pai:{
+        type: Sequelize.STRING,
+        allowNull: true,
+      }
     });     
   },
 

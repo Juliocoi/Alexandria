@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = {
+module.exports = {  
   async up (queryInterface, Sequelize) {
     return await queryInterface.createTable("livros", { 
       id: {
@@ -8,6 +8,22 @@ module.exports = {
         defaultValue: Sequelize.UUIDV4,
         allowNull: false,
         primaryKey: true,
+      },
+      nome: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      edicao: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      editora: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      estante: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       isbn: {
         type: Sequelize.INTEGER,
@@ -25,16 +41,9 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      catalogoId:{ //foreign key
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
-        references: {
-          model: {
-            tableName: "catalogos",
-          },
-          key: 'id',
-        },
-        allowNull: false
+		  palavraChave: {
+        type: Sequelize.STRING,
+        allowNull: true,
       }
     }); 
   },

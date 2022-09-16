@@ -45,6 +45,7 @@ ModelLivro.init(
 	}
 );
 
+
 ModelLivro.belongsTo(ModelCatalogo);
 
 ModelCatalogo.hasMany(ModelLivro, {
