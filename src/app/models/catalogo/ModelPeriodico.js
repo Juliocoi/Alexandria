@@ -44,7 +44,7 @@ ModelPeriodico.init(
 	{
 		sequelize,
 		tableName: "periodicos",
-		modelName: ModelPeriodico,
+		modelName: "ModelPeriodico",
 		timestamps: false,
 	}
 );
