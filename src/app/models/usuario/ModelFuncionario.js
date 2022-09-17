@@ -41,7 +41,7 @@ ModelFuncionario.init(
             allowNull: true
         },
         tipoFuncionario: {
-            type: DataTypes.ENUM,
+            type: DataTypes.ENUM('0', '1'),
             allowNull: false
         }
     },
