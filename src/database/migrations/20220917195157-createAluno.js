@@ -12,6 +12,11 @@ module.exports = {
       matricula: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        unique: true
+      },
+      senha: {
+        type: Sequelize.STRING,
+        allowNull: false
       },
       nome: {
         type: Sequelize.STRING,
@@ -33,7 +38,8 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       }
-        });
+    });
+     
   },
 
   async down (queryInterface, Sequelize) {
