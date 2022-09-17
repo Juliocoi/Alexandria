@@ -11,18 +11,22 @@ ModelFuncionario.init(
             type: DataTypes.UUIDV4,
             primaryKey: true
         },
+        matricula: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            unique: true
+        },
+        senha: {
+            type: DataTypes.STRING(20),
+            allowNull: false
+        },
         nome: {
             type: DataTypes.STRING(100),
             allowNull: false
         },
         email: {
             type: DataTypes.STRING(45),
-            allowNull: false,
-        },
-        matricula: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            unique: true
+            allowNull: false
         },
         dataDeNascimento: {
             type: DataTypes.DATE,
@@ -32,16 +36,19 @@ ModelFuncionario.init(
             type: DataTypes.STRING(100),
             allowNull: false
         },
-
         pai: {
             type: DataTypes.STRING(100),
-            allowNull: true,
+            allowNull: true
         },
-
+        tipoFuncionaro: {
+            type: DataTypes.ENUM,
+            allowNull: false
+        }
     },
     {
         sequelize,
-        modelName: "funcionarios",
+        modelName: ModelFuncionario,
+        tableName: "funcionarios",
         timestamps: false,
     }
 );
