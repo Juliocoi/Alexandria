@@ -1,4 +1,3 @@
-import ModelCatalogo from "./ModelCatalogo";
 import { Sequelize, DataTypes, Model } from "sequelize";
 import database from "../../../config/database";
 
@@ -27,29 +26,38 @@ ModelLivro.init(
 		},
 		coAutor: {
 			type: DataTypes.STRING,
-			
 		},
-		catalogoId: {
-			type: DataTypes.UUID,
-			defaultValue: DataTypes.UUIDV4,
-			references: {
-				model: ModelCatalogo,
-				key: 'id',
-			}
+		nome: {
+			type: DataTypes.STRING,
+			allowNull: false,
 		},
+		edicao:{
+			type: DataTypes.INTEGER,
+			allowNull: false,
+		},
+		editora: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
+		estante: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
+		dipsponivel: {
+			type: DataTypes.BOOLEAN,
+			allowNull: false
+		},
+		palavraChave: {
+			type: DataTypes.STRING,
+			allowNull: false
+		}
 	},
 	{
 		sequelize,
 		tableName: "livros",
+		modelName: ModelLivro,
 		timestamps: false,
 	}
 );
 
-
-ModelLivro.belongsTo(ModelCatalogo);
-
-ModelCatalogo.hasMany(ModelLivro, {
-	foreignKey: "catalogoId"
-});
-
-
+export default ModelLivro;

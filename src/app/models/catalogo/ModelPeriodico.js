@@ -1,4 +1,3 @@
-import ModelCatalogo from "./ModelCatalogo";
 import { Sequelize, DataTypes, Model } from "sequelize";
 import database from "../../../config/database";
 
@@ -21,26 +20,33 @@ ModelPeriodico.init(
 			type: DataTypes.DATE,
 			allowNull: false,
 		},
-		catalogoId: {
-			type: DataTypes.UUID,
-			defaultValue: DataTypes.UUIDV4,
-			references: {
-				model: ModelCatalogo,
-				key: 'id',
-			}
+		nome: {
+			type: DataTypes.STRING,
+			allowNull: false,
 		},
+		edicao:{
+			type: DataTypes.INTEGER,
+			allowNull: false,
+		},
+		editora: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
+		estante: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
+		palavraChave: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		}
 	},
 	{
 		sequelize,
 		tableName: "periodicos",
+		modelName: ModelPeriodico,
 		timestamps: false,
 	}
 );
-
-ModelPeriodico.belongsTo(ModelCatalogo);
-
-ModelCatalogo.hasMany(ModelPeriodico, {
-	foreignKey: "catalogoId"
-})
 
 export default ModelPeriodico;
