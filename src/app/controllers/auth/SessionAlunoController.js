@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-import crypto from 'node:crypto';
 import ListAlunoService from '../../services/aluno/ListAlunoService';
 import SenhaHash from '../../utils/SenhaHash';
 
@@ -28,14 +27,13 @@ class SessionAlunoController {
             aluno: {
                 id,
                 nome,
-                email
+                matricula
             },
             // mudar secret/private key
             token: jwt.sign({id}, process.env.JWT_PRIVATE_KEY, {
                 expiresIn: '5d'
             })
         })
-
     }
 }
 
