@@ -15,6 +15,22 @@ class Funcionarios{
         }
     };
 
+    async listaFuncionarioMatricula(matricula){
+        try {
+            const funcionario = await ModelFuncionario.findOne({
+                where: {
+                    matricula
+                }
+            });
+
+            return funcionario;
+            
+        } catch (error) {
+            console.log(error);
+            return {erro: error.message}
+        } 
+    }
+
     async listaFuncionarioDados(funcionarioNome){
         try {
             const funcionario = await ModelFuncionario.findOne({ where: {name: funcionarioNome} });
