@@ -40,14 +40,14 @@ ModelFuncionario.init(
             type: DataTypes.STRING(100),
             allowNull: true
         },
-        tipoFuncionaro: {
+        tipoFuncionario: {
             type: DataTypes.ENUM,
             allowNull: false
         }
     },
     {
         sequelize,
-        modelName: ModelFuncionario,
+        modelName: "ModelFuncionario",
         tableName: "funcionarios",
         timestamps: false,
     }

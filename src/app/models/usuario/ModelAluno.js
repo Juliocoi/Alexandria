@@ -28,10 +28,6 @@ ModelAluno.init(
 			type: DataTypes.STRING(45),
 			allowNull: false,
 		},
-		senha:{
-			type: DataTypes.STRING(64),
-			allowNull: false
-		},
 		dataDeNascimento:{
 			type: DataTypes.DATE,
 			allowNull: false
@@ -47,7 +43,7 @@ ModelAluno.init(
 	},
 	{
 		sequelize,
-		modelName: ModelAluno,
+		modelName: "ModelAluno",
 		tableName: "alunos",
 		timestamps: false,		
 	}
