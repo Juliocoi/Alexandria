@@ -11,25 +11,28 @@ class ModelEmprestimo extends Model {};
 ModelEmprestimo.init(
     {
         id: {
-            type: DataTypes.UUIDV4(),
+            type: DataTypes.UUIDV4,
             primaryKey: true
         },
-        emprestimo_Aluno_id: {
-            type: DataTypes.UUIDV4(),
+        alunoId: {
+            type: DataTypes.UUIDV4,
+            allowNull: false,
             references: {
                 model: ModelAluno,
                 key: 'id'
             }
         },
-        emprestimo_Funcionario_id: {
-            type: DataTypes.UUIDV4(),
+        funcionarioId: {
+            type: DataTypes.UUIDV4,
+            allowNull: false,
             references: {
                 model: ModelFuncionario,
                 key: 'id'
             }
         },
-        emprestimo_Livro_id: {
-            type: DataTypes.UUIDV4(),
+        livroId: {
+            type: DataTypes.UUIDV4,
+            allowNull: false,
             references: {
                 model: ModelLivro,
                 key: 'id'
@@ -52,25 +55,16 @@ ModelEmprestimo.init(
     }
 );
 
-ModelAluno.hasOne(ModelEmprestimo, {
-    foreignKey: {
-        name:'emprestimo_Aluno_id',
-        allowNull: false    
-    }
+ModelAluno.hasMany(ModelEmprestimo, {
+    foreignKey:'alunoId',
 });
 
-ModelFuncionario.hasOne(ModelEmprestimo, {
-    foreignKey: {
-        name:'emprestimo_Funcionario_id',
-        allowNull: false
-    }
+ModelFuncionario.hasMany(ModelEmprestimo,{
+    foreignKey: 'funcionarioId'
 });
 
-ModelLivro.hasOne(ModelEmprestimo, {
-    foreignKey: {
-        name:'emprestimo_Livro_id',
-        allowNull: false
-    }
+ModelLivro.hasOne(ModelEmprestimo,{
+    foreignKey: 'livroId'
 });
 
 ModelEmprestimo.belongsTo(ModelAluno);

@@ -39,7 +39,7 @@ module.exports = {
         allowNull: true,
       },
       tipoFuncionario: {
-        type: DataTypes.ENUM,
+        type: Sequelize.ENUM('0', '1'),
         allowNull: false
       }
     });

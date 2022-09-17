@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
     return await queryInterface.createTable("emprestimo", {
       id: {
         type: Sequelize.UUID,
@@ -9,34 +9,37 @@ module.exports = {
         allowNull: false,
         primaryKey: true
       },
-      emprestimo_Aluno_id: {
+      emprestimoId: {
         type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         references: {
           model: {
-            schema: 'schema',
-            tableName: 'alunos'
+            tableName: 'alunos',
+            schema: 'schema'
           },
           key: 'id'
         },
         allowNull: false
       },
-      emprestimo_Funcionario_id: {
+      funcionarioId: {
         type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         references: {
           model: {
-            schema: 'schema',
-            tableName: 'funcionarios'
+            tableName: 'funcionarios',
+            schema: 'schema'
           },
           key: 'id'
         },
         allowNull: false
       },
-      emprestimo_Livro_id: {
+      livroId: {
         type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         references: {
           model: {
-            schema: 'schema',
-            tableName: 'livros'
+            tableName: 'livros',
+            schema: 'schema'
           },
           key: 'id'
         },
@@ -53,7 +56,7 @@ module.exports = {
     })
   },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) {
     return await queryInterface.dropTable("emprestimo");
   }
 };
