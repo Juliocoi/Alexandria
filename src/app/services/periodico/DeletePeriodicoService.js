@@ -1,5 +1,4 @@
 import ModelPeriodico from "../../models/catalogo/ModelPeriodico"
-
 class DeletePeriodicoService{
     constructor(){};
 
@@ -13,7 +12,7 @@ class DeletePeriodicoService{
 
               const periodicoDeletado = await periodico.destroy();
 
-              return periodicoDeletado;
+              return {mensagem: "Periódico deletado com sucesso."};
         }
         catch(error){
             console.log(error);

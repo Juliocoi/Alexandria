@@ -11,7 +11,7 @@ class DeleteFuncionarioController {
 
         const deletado = await this.service.delete(matricula);
 
-        return response.send(` Funcionário ${deletado} excluído com sucesso`);
+        return response.status(200).json(deletado);
     }
 }
 

@@ -8,8 +8,8 @@ class Periodicos {
         const periodicos = await ModelPeriodico.findAll();
 
     return periodicos;
-    }
-    catch(error){
+
+    } catch(error){
         console.log(error);
         return { erro: error.message };
     }
@@ -19,9 +19,13 @@ class Periodicos {
     try{
         const periodico = await ModelPeriodico.findOne({where: { nome: periodicoNome }});
 
+        if(!funcionario){
+            return { message: 'Periodico não encontrado'}
+        }
+
         return periodico;
-    }
-    catch(error){
+        
+    } catch(error){
         console.log(error);
         return { erro: error.message };
 

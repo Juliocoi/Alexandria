@@ -33,7 +33,7 @@ class Funcionarios{
 
     async listaFuncionarioDados(funcionarioNome){
         try {
-            const funcionario = await ModelFuncionario.findOne({ where: {name: funcionarioNome} });
+            const funcionario = await ModelFuncionario.findOne({ where: {nome: funcionarioNome} });
 
             if(!funcionario){
                 return { message: 'Funcionário não encontrado'}
@@ -44,10 +44,8 @@ class Funcionarios{
         } catch (error) {
             console.log(error);
             return { erro: error.message };
-        }
-       
+        }      
     }
-
 }
 
 export default Funcionarios;

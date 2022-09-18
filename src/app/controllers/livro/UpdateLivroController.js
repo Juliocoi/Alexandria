@@ -5,14 +5,14 @@ class UpdateLivroController{
         this.service = new UpdateLivroService();
     }
 
-    atualizar(request, response){
-        const { isbn } = request.params;
+    async update(request, response){
+        const { id } = request.params;
 
-        const { nome, autor, coautor, editora, anoLancamento, edicao } = request.body;
+        const { isbn, nome, autor, anoLancamento,coautor, edicao, editora, estante, disponivel, palavraChave } = request.body;
 
-        const atualizacao = this.service.atualizar(isbn, nome, autor, coautor, editora, anoLancamento, edicao)
+        const atualizacao = await this.service.atualizar(id, isbn, nome, autor, anoLancamento,coautor, edicao, editora, estante, disponivel, palavraChave);
 
-        response.json(atualizacao);
+        return response.status(200).json(atualizacao);
     }
 }
 

@@ -1,28 +1,31 @@
-import ListLivroService from '../../services/livro/ListLivroService'
+import ModelLivro from '../../models/catalogo/ModelLivro';
 
 class AtualizarLivro{
-    constructor(){
-        this.service = new ListLivroService()
-    }
+    constructor(){}
+    
 
-    atualizar(isbn, nome, autor, coautor, editora, anoLancamento, edicao){
-        
-        const livros = this.service.listaLivroService();
+    async atualizar(id, isbn, nome, autor, anoLancamento,coautor, edicao, editora, estante, disponivel, palavraChave){
+        try{
+        const livro = await ModelLivro.findByPk(id);
 
-        const IndexISBNLivro = livros.findIndex(item => item.isbn === Number(isbn));
-
-        if(IndexISBNLivro === -1){
-            return {'Erro': 'Livro não encontrado em nosso banco de dados'}
+        if(!livro){
+            return {mensagem: 'Livro não encontrado.'}
         }
 
-        livros[IndexISBNLivro] = {
-            nome, autor, coautor, editora, anoLancamento, edicao
-        }
+        const [livroAtualizado] = await ModelLivro.update({
+             isbn, nome, autor, anoLancamento,coautor, edicao, editora, estante, disponivel, palavraChave
+        }, {where: {id}});
 
-        return {
-            isbn,
-            ...livros[IndexISBNLivro]
-        }
+        if (livroAtualizado === 0){
+                return { mensagem: "As alterações prentendidas já existem em nosso servidor" };
+        } else {
+            return {isbn, nome, autor, anoLancamento,coautor, edicao, editora, estante, disponivel, palavraChave};
+        }       
+
+      } catch(error) {
+        console.log(error);
+        return {erro: error.message};
+      }
     }
 }
 

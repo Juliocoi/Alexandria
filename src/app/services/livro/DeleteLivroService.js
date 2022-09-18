@@ -1,24 +1,25 @@
-import ListLivroService from './ListLivroService';
+import ModelLivro from '../../models/catalogo/ModelLivro';
+
 
 class DeleteLivroService{
-    constructor(){
-        this.service = new ListLivroService();
-    }
+    constructor(){}
 
-    delete(isbn){
-        const livros = this.service.listaLivroService();
-        
-        const livroIndex = livros.findIndex(item => item.isbn === Number(isbn));
+    async delete(id){
+        try {
+        const livro = await ModelLivro.findByPk(id);
+               
+        if (!livro){
+            return { message: 'Livro não encontrado'}
+        };
 
-        if (livroIndex === -1){
-            return { Erro: 'Livro não encontrado'}
-        }
+        const livroDeletado = await livro.destroy();
 
-        livros.splice(livroIndex, 1);
-
-        return { Mensagem: 'Livro removido com sucesso' }
-    }
-
+        return {mensagem: "Livro deletado com sucesso." }
+    } catch (error){
+        console.log(error);
+        return {Message: error.message}
+    };
+  }
 }
 
 export default DeleteLivroService

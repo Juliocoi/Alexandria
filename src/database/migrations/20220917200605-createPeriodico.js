@@ -9,8 +9,16 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
       },
+      issn: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
       nome: {
         type: Sequelize.STRING,
+        allowNull: false,
+      },
+      anoLancamento: {
+        type: Sequelize.DATE,
         allowNull: false,
       },
       edicao: {
@@ -23,14 +31,6 @@ module.exports = {
       },
       estante: {
         type: Sequelize.STRING,
-        allowNull: false,
-      },
-      issn: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      anoLancamento: {
-        type: Sequelize.DATE,
         allowNull: false,
       },
       palavraChave: {

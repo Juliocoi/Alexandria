@@ -6,10 +6,10 @@ class CreateLivroController{
 
     }
 
-    create(request, response){
-        const {isbn, nome, autor, coautor, editora, anoLancamento, edicao} = request.body;
+    async create(request, response){
+        const {isbn, nome, autor, anoLancamento,coautor, edicao, editora, estante, disponivel, palavraChave} = request.body;
 
-        const livro = this.service.createLivro(isbn, nome, autor, coautor, editora, anoLancamento, edicao);
+        const livro = await this.service.createLivro(isbn, nome, autor, anoLancamento,coautor, edicao, editora, estante, disponivel, palavraChave);
 
         return response.status(200).json(livro);
     }

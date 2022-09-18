@@ -9,9 +9,25 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
       },
+      isbn: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
       nome: {
         type: Sequelize.STRING,
         allowNull: false,
+      },
+      autor:{
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      anoLancamento: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      coAutor: {
+        type: Sequelize.STRING,
+        allowNull: true,
       },
       edicao: {
         type: Sequelize.INTEGER,
@@ -25,21 +41,9 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      isbn: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      autor: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      anoLancamento: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
-      coAutor: {
-        type: Sequelize.STRING,
-        allowNull: true,
+      disponivel: {
+        type: Sequelize.BOOLEAN,
+			allowNull: false
       },
 		  palavraChave: {
         type: Sequelize.STRING,

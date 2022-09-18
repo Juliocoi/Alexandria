@@ -36,7 +36,7 @@ routes.post('/aluno', (req, resp) => createAlunoController.create(req, resp));
 routes.get('/alunos', (req, resp) => listAllAlunoController.index(req, resp));
 routes.get('/aluno/:nome', (req, resp) => listAllAlunoController.listarAlunosNome(req, resp));
 routes.put('/aluno/:matricula', (req, resp) => updateAlunoController.atualizar(req, resp));
-routes.delete('/aluno/:matricula', (req, resp) => deleteAlunoController.delete(req, resp));
+routes.delete('/aluno/delete/:matricula', (req, resp) => deleteAlunoController.delete(req, resp));
 
 const createFuncionarioController = new CreateFuncionarioController();
 const listAllFuncionarioController = new ListAllFuncionarioController();
@@ -47,7 +47,7 @@ routes.post('/funcionario', (req, resp) => createFuncionarioController.create(re
 routes.get('/funcionarios', (req, resp) => listAllFuncionarioController.index(req, resp));
 routes.get('/funcionario/:nome', (req, resp) => listAllFuncionarioController.listarFuncionariosNome(req, resp));
 routes.put('/funcionario/:matricula', (req, resp) => updateFuncionarioController.update(req, resp));
-routes.delete('/funcionario/:matricula', (req, resp) => deleteFuncionarioController.delete(req, resp));
+routes.delete('/funcionario/delete/:matricula', (req, resp) => deleteFuncionarioController.delete(req, resp));
 
 const createLivroController = new CreateLivroController();
 const listLivroController = new ListLivroController();
@@ -58,7 +58,7 @@ routes.post('/livros', (req, resp) => createLivroController.create(req, resp));
 routes.get('/livros', (req, resp) => listLivroController.listAll(req, resp));
 routes.get('livro', (req, resp) => listLivroController.listarLivrosNome(req, resp))
 routes.put('/livro/:id', (req, resp) => updateLivroController.atualizar(req, resp));
-routes.delete('/livro/:id', (req, resp) => deleteLivrosController.delete(req, resp));
+routes.delete('/livro/delete/:id', (req, resp) => deleteLivrosController.delete(req, resp));
 
 const createPeriodicoController = new CreatePeriodicoController();
 const listPeriodicoController = new ListPeriodicoController();
@@ -68,8 +68,8 @@ const deletePeriodicoController = new DeletePeriodicoController();
 routes.post('/periodico', (req, resp) => createPeriodicoController.create(req, resp));
 routes.get('/periodicos', (req, resp) => listPeriodicoController.index(req, resp));
 routes.get('/periodico', (req, resp)=> listPeriodicoController.listarPeriodicosNome(req, resp));
-routes.put('/periodico/:id', (req, resp) => updatePeriodicoController.atualizar(req, resp));
-routes.delete('/periodico/:id', (req, resp) => deletePeriodicoController.delete(req, resp));
+routes.put('/periodico/:id', (req, resp) => updatePeriodicoController.update(req, resp));
+routes.delete('/periodico/delete/:id', (req, resp) => deletePeriodicoController.delete(req, resp));
 
 //Rota para criar sessão de aluno. [IMPORTANTE](ver posição correta no futuro)
 routes.post('/sessionAluno', (req, resp) => SessionAlunoController.create(req, resp));

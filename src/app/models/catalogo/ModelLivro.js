@@ -16,6 +16,10 @@ ModelLivro.init(
 			type: DataTypes.INTEGER,
 			allowNull: false,
 		},
+		nome: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
 		autor: {
 			type: DataTypes.STRING,
 			allowNull: false,
@@ -26,10 +30,6 @@ ModelLivro.init(
 		},
 		coAutor: {
 			type: DataTypes.STRING,
-		},
-		nome: {
-			type: DataTypes.STRING,
-			allowNull: false,
 		},
 		edicao:{
 			type: DataTypes.INTEGER,
@@ -43,7 +43,7 @@ ModelLivro.init(
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		dipsponivel: {
+		disponivel: {
 			type: DataTypes.BOOLEAN,
 			allowNull: false
 		},
