@@ -1,18 +1,17 @@
 import DeleteLivroService from '../../services/livro/DeleteLivroService';
 
-
 class DeleteLivroController{
 
     constructor(){
         this.service = new DeleteLivroService();
     }
 
-    delete(request, response) {
-        const { isbn } = request.params;
+    async delete(request, response) {
+        const { id } = request.params;
 
-        const resultado = this.service.delete(isbn);
+        const deletado = await this.service.delete(id);
 
-        response.status(200).send(resultado);
+        return response.status(200).json(deletado);
     }
 }
 

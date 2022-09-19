@@ -1,9 +1,8 @@
 import ModelPeriodico from "../../models/catalogo/ModelPeriodico";
-
 class UpdatePeriodico{
     constructor(){}
 
-    async atualizar(id, nome, edicao, editora, estante, issn, anoLancamento){
+    async atualizar(id, issn, nome, anoLancamento, edicao, editora, estante, palavraChave){
         try{
             const periodico = await ModelPeriodico.findByPk(id);
             
@@ -11,29 +10,21 @@ class UpdatePeriodico{
                 return { mensagem: "Periódico não encontrado" };
               } 
               
-            const [numeroDeRegistrosAtualizados] = await ModelPeriodico.update({
-              nome, 
-              edicao, 
-              editora, 
-              estante, 
-              issn, 
-              anoLancamento
-            },
-            {
-                where: { id },
-                });
+            const [periodicosAtualizados] = await ModelPeriodico.update({
+               issn, nome, anoLancamento, edicao, editora, estante, palavraChave
+            }, {where: {id}})
 
-              if (numeroDeRegistrosAtualizados === 0) {
-                return { mensagem: "Dados iguais, não houve atualização" };
-              } else {
+      if (periodicosAtualizados === 0) {
+          return { mensagem: "As alterações prentendidas já existem em nosso servidor" };
+          } else {
                 return {
-                    id, nome, edicao, editora, estante, issn, anoLancamento
+                  issn, nome, anoLancamento, edicao, editora, estante, palavraChave
                 };
               }
         } 
         catch (error){
             console.log(error);
-            return {message: error.message};
+            return {erro: error.message};
         }
     }
 }

@@ -5,19 +5,19 @@ class ListLivroController{
         this.service = new ListLivroService();
     }
 
-    listAll(request, response){
-        const listarLivros = this.service.listaLivroService();
-        response.json(listarLivros);
-    }
+    async index(request, response){
+        const listarLivros = await this.service.listaLivroService();
+        return response.status(200).json(listarLivros);
+    };
 
-    listarLivrosNome(request,response){
-        const { nome } = request.query;
+    async listarLivrosNome(request,response){
+        const { nome } = request.params;
 
-        if (!{ nome }) {
+        if (!nome) {
             return response.status(400).json({ Erro: 'Você precisa indicar um nome válido' });
         }
 
-        const livro = this.service.listaLivroNome(nome);
+        const livro = await this.service.listaLivroNome(nome);
 
         return response.status(200).json(livro);
     }

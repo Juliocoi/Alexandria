@@ -10,7 +10,7 @@ class DeletePeriodicoController{
 
         const deletado = await this.service.delete(id);
 
-        response.send(deletado);
+        return response.status(200).json(deletado);
     }
 }
 

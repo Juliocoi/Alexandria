@@ -2,9 +2,10 @@ import ModelAluno from '../../models/usuario/ModelAluno';
 import { v4 } from 'uuid';
 import SenhaHash from '../../utils/SenhaHash';
 class CreateAlunoService {
+  
   constructor(){};
 
-  async createAluno(matricula, nome, email, senha, dataDeNascimento, mae, pai) {
+  async createAluno(matricula, senha, nome, email, dataDeNascimento, mae, pai) {
     // pega a senha do usuário e mascara com um código que passaremos abaixo, criptografando a senha.
     const senhaHash = SenhaHash.hash(senha);
 
@@ -12,10 +13,10 @@ class CreateAlunoService {
       // o create abaixo é um metodo nativo do sequelize.
       const newAluno = await ModelAluno.create({ 
         id: v4(), 
-        matricula, 
-        nome, 
-        email, 
+        matricula,  
         senha: senhaHash,
+        nome,
+        email,
         dataDeNascimento, 
         mae, 
         pai

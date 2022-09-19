@@ -1,8 +1,8 @@
-import listaPeriodicoService from '../../services/periodico/ListPeriodicoService';
+import ListPeriodicoService from '../../services/periodico/ListPeriodicoService';
 
 class listPeriodicoController {
     constructor (){
-        this.service = new listaPeriodicoService();
+        this.service = new ListPeriodicoService();
     };
 
     async index(request, response) {
@@ -13,7 +13,7 @@ class listPeriodicoController {
     };
 
     async listarPeriodicosNome(request, response) {
-        const { nome } = request.query;
+        const { nome } = request.params;
 
         if (!nome) {
             return response.status(400).json({ 'Erro': 'Você precisa indicar um nome' });

@@ -9,9 +9,9 @@ class UpdateFuncionarioController {
     async update(request, response) {
         const { matricula } = request.params;
 
-        const { id, nome, email, dataDeNascimento, mae, pai} = request.body;
+        const { senha, nome, email, dataDeNascimento, mae, pai, tipoFuncionario } = request.body;
 
-        const atualizacaoFunc = await this.service.atualizar(id, nome, email, dataDeNascimento, mae, pai);
+        const atualizacaoFunc = await this.service.atualizar( matricula, senha, nome, email, dataDeNascimento, mae, pai, tipoFuncionario);
 
         return response.status(200).json(atualizacaoFunc);
     };

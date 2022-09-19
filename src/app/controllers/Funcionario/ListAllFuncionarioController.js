@@ -13,7 +13,7 @@ class ListAllFuncionariosControler {
     };
 
     async listarFuncionariosNome(request, response) {
-        const { nome } = request.query;
+        const { nome } = request.params;
 
         if (!nome) {
             return response.status(400).json({ 'Erro': 'Você precisa indicar um nome' });

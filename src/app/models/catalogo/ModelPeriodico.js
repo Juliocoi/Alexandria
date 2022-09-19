@@ -16,12 +16,12 @@ ModelPeriodico.init(
 			type: DataTypes.INTEGER,
 			allowNull: false,
 		},
-		anoLancamento: {
-			type: DataTypes.DATE,
-			allowNull: false,
-		},
 		nome: {
 			type: DataTypes.STRING,
+			allowNull: false,
+		},
+		anoLancamento: {
+			type: DataTypes.DATE,
 			allowNull: false,
 		},
 		edicao:{
