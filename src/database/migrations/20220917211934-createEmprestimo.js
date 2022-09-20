@@ -10,8 +10,7 @@ module.exports = {
         primaryKey: true
       },
       emprestimoId: {
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
+        type: Sequelize.UUID,       
         references: {
           model: {
             tableName: 'alunos',
@@ -22,8 +21,7 @@ module.exports = {
         allowNull: false
       },
       funcionarioId: {
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
+        type: Sequelize.UUID,       
         references: {
           model: {
             tableName: 'funcionarios',
@@ -34,8 +32,7 @@ module.exports = {
         allowNull: false
       },
       livroId: {
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
+        type: Sequelize.UUID,       
         references: {
           model: {
             tableName: 'livros',

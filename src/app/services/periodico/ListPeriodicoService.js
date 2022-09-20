@@ -19,7 +19,7 @@ class Periodicos {
     try{
         const periodico = await ModelPeriodico.findOne({where: { nome: periodicoNome }});
 
-        if(!funcionario){
+        if(!periodico){
             return { message: 'Periodico não encontrado'}
         }
 
