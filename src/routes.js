@@ -21,7 +21,6 @@ import UpdatePeriodicoController from './app/controllers/periodico/UpdatePeriodi
 import DeletePeriodicoController from './app/controllers/periodico/DeletePeriodicoController';
 
 import SessionAlunoController from './app/controllers/auth/SessionAlunoController';
-import SessionFucionarioController from './app/controllers/auth/SessionFuncionarioController';
 import ValidarTokenSessao from './Middlewares/ValidarTokenSessao';
 import SessionFuncionarioController from './app/controllers/auth/SessionFuncionarioController';
 
@@ -55,9 +54,9 @@ const updateLivroController = new UpdateLivroController();
 const deleteLivrosController = new DeleteLivrosController();
 
 routes.post('/livros', (req, resp) => createLivroController.create(req, resp));
-routes.get('/livros', (req, resp) => listLivroController.listAll(req, resp));
-routes.get('livro', (req, resp) => listLivroController.listarLivrosNome(req, resp))
-routes.put('/livro/:id', (req, resp) => updateLivroController.atualizar(req, resp));
+routes.get('/livros', (req, resp) => listLivroController.index(req, resp));
+routes.get('/livro/:nome', (req, resp) => listLivroController.listarLivrosNome(req, resp));
+routes.put('/livro/:id', (req, resp) => updateLivroController.update(req, resp));
 routes.delete('/livro/delete/:id', (req, resp) => deleteLivrosController.delete(req, resp));
 
 const createPeriodicoController = new CreatePeriodicoController();
@@ -67,7 +66,7 @@ const deletePeriodicoController = new DeletePeriodicoController();
 
 routes.post('/periodico', (req, resp) => createPeriodicoController.create(req, resp));
 routes.get('/periodicos', (req, resp) => listPeriodicoController.index(req, resp));
-routes.get('/periodico', (req, resp)=> listPeriodicoController.listarPeriodicosNome(req, resp));
+routes.get('/periodico/:nome', (req, resp)=> listPeriodicoController.listarPeriodicosNome(req, resp));
 routes.put('/periodico/:id', (req, resp) => updatePeriodicoController.update(req, resp));
 routes.delete('/periodico/delete/:id', (req, resp) => deletePeriodicoController.delete(req, resp));
 

@@ -12,13 +12,13 @@ class SessionFuncionarioController {
         const funcionario = service.listaFuncionarioMatricula(matricula)
 
         if(!funcionario){
-            return resp.status(401).json({error: "A matrícula ou senha estão incorretas"})
+            return resp.status(401).json({error: "A matrícula estão incorretas"})
         }
 
-        const validarSenha = SenhaHash.validacao(senha, funcionario.senha);
+        const validarSenha = SenhaHash.hash(senha, funcionario.senha);
 
         if (!validarSenha){
-            return resp.status(401).json({ error: "A matrícula ou senha estão incorretas" })
+            return resp.status(401).json({ error: "A  ou senha estão incorretas" })
         }
 
         const { id, nome } = funcionario;
