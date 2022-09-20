@@ -1,4 +1,4 @@
-import Sequelize, {DataTypes, Model} from 'sequelize';
+import {Sequelize, DataTypes, Model} from 'sequelize';
 import database from '../../../config/database';
 import ModelAluno from '../usuario/ModelAluno';
 import ModelFuncionario from '../usuario/ModelFuncionario';
@@ -31,7 +31,8 @@ ModelEmprestimo.init(
             }
         },
         livroId: {
-            type: DataTypes.UUIDV4,
+            type: DataTypes.UUID,
+			defaultValue: DataTypes.UUIDV4,
             allowNull: false,
             references: {
                 model: ModelLivro,
@@ -55,20 +56,42 @@ ModelEmprestimo.init(
     }
 );
 
-ModelAluno.hasMany(ModelEmprestimo, {
-    foreignKey:'alunoId',
+//Aluno
+ModelAluno.belongsToMany(ModelLivro, {
+    through:ModelEmprestimo,
+});
+ModelAluno.belongsToMany(ModelFuncionario, {
+    through:ModelEmprestimo,
 });
 
-ModelFuncionario.hasMany(ModelEmprestimo,{
-    foreignKey: 'funcionarioId'
+//Funcionario
+ModelFuncionario.belongsToMany(ModelLivro,{
+    through:ModelEmprestimo,
+});
+ModelFuncionario.belongsToMany(ModelAluno,{
+    through:ModelEmprestimo,
 });
 
-ModelLivro.hasOne(ModelEmprestimo,{
-    foreignKey: 'livroId'
+//Livro
+ModelLivro.belongsToMany(ModelAluno,{
+    through:ModelEmprestimo,
+});
+ModelLivro.belongsToMany(ModelFuncionario,{
+    through:ModelEmprestimo,
 });
 
-ModelEmprestimo.belongsTo(ModelAluno);
-ModelEmprestimo.belongsTo(ModelFuncionario);
-ModelEmprestimo.belongsTo(ModelLivro);
+//Emprestimo
+ModelEmprestimo.belongsTo(ModelAluno, {
+    as: "alunos",
+    foreignKey: "alunoId",
+});
+ModelEmprestimo.belongsTo(ModelFuncionario, {
+    as: "funcionarios",
+    foreignKey: "funcionarioId",
+});
+ModelEmprestimo.belongsTo(ModelLivro, {
+    as: "livros",
+    foreignKey: "livroId",
+});
 
 export default ModelEmprestimo;

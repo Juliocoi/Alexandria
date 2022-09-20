@@ -9,38 +9,38 @@ module.exports = {
         allowNull: false,
         primaryKey: true
       },
-      emprestimoId: {
-        type: Sequelize.UUID,       
+      alunoId: {
+        type: Sequelize.UUID,
+        allowNull: false,       
         references: {
           model: {
-            tableName: 'alunos',
-            schema: 'schema'
+            schema: "schema",
+            tableName: "alunos"
           },
-          key: 'id'
+          key: "id"
         },
-        allowNull: false
       },
       funcionarioId: {
-        type: Sequelize.UUID,       
+        type: Sequelize.UUID,
+        allowNull: false,       
         references: {
           model: {
-            tableName: 'funcionarios',
-            schema: 'schema'
+            schema: "schema",
+            tableName: "funcionarios"
           },
-          key: 'id'
+          key: "id"
         },
-        allowNull: false
       },
       livroId: {
-        type: Sequelize.UUID,       
+        type: Sequelize.UUID,
+        allowNull: false, 
         references: {
           model: {
-            tableName: 'livros',
-            schema: 'schema'
+            schema: "schema",
+            tableName: "livros"
           },
-          key: 'id'
+          key: "id"
         },
-        allowNull: false
       },
       dataEmprestimo: {
         type: Sequelize.DATE,
@@ -50,10 +50,10 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false
       }
-    })
+    });
   },
 
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface, _Sequelize) {
     return await queryInterface.dropTable("emprestimo");
   }
 };
