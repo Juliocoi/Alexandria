@@ -24,6 +24,8 @@ import SessionAlunoController from './app/controllers/auth/SessionAlunoControlle
 import ValidarTokenSessao from './Middlewares/ValidarTokenSessao';
 import SessionFuncionarioController from './app/controllers/auth/SessionFuncionarioController';
 
+import EmprestimoController from './app/controllers/emprestimo/EmprestimoController';
+
 const routes = new Router();
 
 const createAlunoController = new CreateAlunoController();
@@ -69,6 +71,11 @@ routes.get('/periodicos', (req, resp) => listPeriodicoController.index(req, resp
 routes.get('/periodico/:nome', (req, resp)=> listPeriodicoController.listarPeriodicosNome(req, resp));
 routes.put('/periodico/:id', (req, resp) => updatePeriodicoController.update(req, resp));
 routes.delete('/periodico/delete/:id', (req, resp) => deletePeriodicoController.delete(req, resp));
+
+//Rota para emprestimo
+const emprestimoController = new EmprestimoController();
+
+routes.put('/emprestimo', (req, resp) => emprestimoController.emprestimo(req, resp));
 
 //Rota para criar sessão de aluno. [IMPORTANTE](ver posição correta no futuro)
 routes.post('/sessionAluno', (req, resp) => SessionAlunoController.create(req, resp));
