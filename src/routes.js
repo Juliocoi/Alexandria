@@ -33,6 +33,7 @@ const deleteAlunoController = new DeleteAlunoController();
 
 routes.post('/aluno', (req, resp) => createAlunoController.create(req, resp));
 routes.get('/alunos', (req, resp) => listAllAlunoController.index(req, resp));
+routes.get('/aluno/:matricula', (req, resp) => listAllAlunoController.listarAlunoMatricula(req, resp));
 routes.get('/aluno/:nome', (req, resp) => listAllAlunoController.listarAlunosNome(req, resp));
 routes.put('/aluno/:matricula', (req, resp) => updateAlunoController.atualizar(req, resp));
 routes.delete('/aluno/delete/:matricula', (req, resp) => deleteAlunoController.delete(req, resp));
