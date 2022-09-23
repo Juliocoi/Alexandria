@@ -9,7 +9,7 @@ module.exports = {
         allowNull: false,
         primaryKey: true
       },
-      emprestimoId: {
+      alunoId: {
         type: Sequelize.UUID,       
         references: {
           model: {
