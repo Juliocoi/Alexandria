@@ -1,18 +1,18 @@
-import AtualizarEmprestimoService from "../../services/emprestimo/AtualizarEmprestimoService";
+import UpdateLivroService from '../../services/livro/UpdateLivroService'
 
 class EmprestimoController {
     constructor (){
-        this.service = new AtualizarEmprestimoService();
+        this.service = new UpdateLivroService();
     };
 
     async emprestimo(request, response) {
         const { id } = request.params;
 
-        const { disponivel } = request.body;
+        const { isbn, nome, autor, anoLancamento, coautor, edicao, editora, estante, disponivel, palavraChave } = request.body;
 
-        const emprestimo = await this.service.emprestimo(disponivel);
+        const emprestimo = await this.service.atualizar(id, isbn, nome, autor, anoLancamento, coautor, edicao, editora, estante, disponivel, palavraChave);
 
-        response.status(200).json(emprestimo);
+        return response.status(200).json(emprestimo);
     }
 }
 
