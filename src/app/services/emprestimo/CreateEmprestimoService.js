@@ -7,7 +7,7 @@ class CreateEmprestimo {
 
     async createEmprestimo(alunoId, funcionarioId, livroId, dataEmprestimo, estimativaEntrega) {
         try {
-            //checa a cantidade de empréstimos já realizados pelo aluno
+            //checa a quantidade de empréstimos já realizados pelo aluno
             const emprestimos = await ModelEmprestimo.findAll({ where: { alunoId, dataEntrega: null}})
 
             if(emprestimos.length >= 3){
