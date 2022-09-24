@@ -35,7 +35,8 @@ ModelEmprestimo.init(
             allowNull: false,
             references: {
                 model: ModelLivro,
-                key: 'id'
+                key: 'id',
+                
             }
         },
         dataEmprestimo: {
@@ -45,13 +46,20 @@ ModelEmprestimo.init(
         estimativaEntrega: {
             type: DataTypes.DATE,
             allowNull: false
+        },
+        dataEntrega: {
+            type: DataTypes.DATE,
+            allowNull: true
         }
-    },   
+
+    },
+   
     {
         sequelize,
         modelName: 'ModelEmprestimo',
         timestamps: false,
-        tableName: 'emprestimo'
+        tableName: 'emprestimo',
+                
     }
 );
 
@@ -67,8 +75,14 @@ ModelLivro.hasOne(ModelEmprestimo,{
     foreignKey: 'livroId'
 });
 
-ModelEmprestimo.belongsTo(ModelAluno);
-ModelEmprestimo.belongsTo(ModelFuncionario);
-ModelEmprestimo.belongsTo(ModelLivro);
+ModelEmprestimo.belongsTo(ModelAluno, {
+    foreignKey: 'alunoId'
+});
+ModelEmprestimo.belongsTo(ModelFuncionario, {
+    foreignKey: 'funcionarioId'
+});
+ModelEmprestimo.belongsTo(ModelLivro, {
+    foreignKey: 'livroId'
+});
 
 export default ModelEmprestimo;

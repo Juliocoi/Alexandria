@@ -46,6 +46,10 @@ module.exports = {
       estimativaEntrega: {
         type: Sequelize.DATE,
         allowNull: false
+      },
+      dataEntrega: {
+        type: Sequelize.DATE,
+        allowNull: true
       }
     })
   },

@@ -1,18 +1,36 @@
 import ModelEmprestimo from '../../models/emprestimo/ModelEmprestimo';
 import { v4 } from 'uuid';
+import ModelLivro from '../../models/catalogo/ModelLivro';
 
 class CreateEmprestimo {
-    constructor(){};
+    constructor() { };
 
-    async createEmprestimo(alunoId, funcionarioId,livroId,dataEmprestimo, estimativaEntrega){
+    async createEmprestimo(alunoId, funcionarioId, livroId, dataEmprestimo, estimativaEntrega) {
         try {
+            
+            const emprestimos = await ModelEmprestimo.findAll({ where: { alunoId, dataEntrega: null}})
+
+            console.log(emprestimos.length)
+            if(emprestimos.length >= 3){
+                throw new Error('Quantidade máxima de empréstimo excedida')
+            }
+
+            const livro = await ModelLivro.findByPk(livroId)
+            
+            if (!livro.disponivel) {
+                throw new Error('Este livro já está emprestado')
+            }
+
             const novoEmprestimo = await ModelEmprestimo.create({ id: v4(), alunoId, funcionarioId, livroId, dataEmprestimo, estimativaEntrega });
 
+            livro.disponivel = false;
+            livro.save()
+
             return novoEmprestimo;
-            
+
         } catch (error) {
-            console.log(error);
-            return {erro: error.message};
+            console.error(error);
+            return { erro: error.message};
         }
 
     }

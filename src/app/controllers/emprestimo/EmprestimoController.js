@@ -1,5 +1,5 @@
 import UpdateLivroService from '../../services/livro/UpdateLivroService'
-
+// TODO INÚTEL. TIRAR NO FINAL
 class EmprestimoController {
     constructor (){
         this.service = new UpdateLivroService();
