@@ -17,12 +17,7 @@ class AtualizarEmprestimoService {
             { disponivel }, 
             { where: {id} }
 		);
-        
-
-        // if (livro.getDataValue('disponivel') === 0){
-        //         return { mensagem: "Este livro não está diponivel para emprestimo" };
-        // } else {
-        // }       
+ 
         return { disponivel };
         
       } catch(error) {
