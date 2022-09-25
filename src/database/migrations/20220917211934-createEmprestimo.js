@@ -9,12 +9,11 @@ module.exports = {
         allowNull: false,
         primaryKey: true
       },
-      emprestimoId: {
+      alunoId: {
         type: Sequelize.UUID,       
         references: {
           model: {
             tableName: 'alunos',
-            schema: 'schema'
           },
           key: 'id'
         },
@@ -25,7 +24,6 @@ module.exports = {
         references: {
           model: {
             tableName: 'funcionarios',
-            schema: 'schema'
           },
           key: 'id'
         },
@@ -36,7 +34,6 @@ module.exports = {
         references: {
           model: {
             tableName: 'livros',
-            schema: 'schema'
           },
           key: 'id'
         },
@@ -49,6 +46,10 @@ module.exports = {
       estimativaEntrega: {
         type: Sequelize.DATE,
         allowNull: false
+      },
+      dataEntrega: {
+        type: Sequelize.DATE,
+        allowNull: true
       }
     })
   },

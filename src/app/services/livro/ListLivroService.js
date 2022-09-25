@@ -13,6 +13,18 @@ class Livros{
     }
 }
 
+    async listaLivroId(id) {
+        try {
+            const livro = await ModelLivro.findOne({
+                where: { id: id }});
+
+            return livro;
+        } catch (error) {
+            console.log(error)
+            return { error: error.message }
+        }
+    };
+
     async listaLivroNome(livroNome){
         try{
         const livro = await ModelLivro.findOne({where: {nome: livroNome}});

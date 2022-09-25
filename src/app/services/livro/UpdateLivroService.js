@@ -19,9 +19,9 @@ class AtualizarLivro{
         if (livroAtualizado === 0){
                 return { mensagem: "As alterações prentendidas já existem em nosso servidor" };
         } else {
-            return {isbn, nome, autor, anoLancamento,coautor, edicao, editora, estante, disponivel, palavraChave};
+          return {isbn, nome, autor, anoLancamento,coautor, edicao, editora, estante, disponivel, palavraChave};
         }       
-
+        
       } catch(error) {
         console.log(error);
         return {erro: error.message};
