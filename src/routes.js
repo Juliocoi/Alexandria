@@ -24,9 +24,13 @@ import SessionAlunoController from './app/controllers/auth/SessionAlunoControlle
 import ValidarTokenSessao from './Middlewares/ValidarTokenSessao';
 import SessionFuncionarioController from './app/controllers/auth/SessionFuncionarioController';
 
+import EmprestimoController from './app/controllers/emprestimo/EmprestimoController';
+import CreateEmprestimoController from './app/controllers/emprestimo/CreateEmprestimoController';
+import EntregaEmprestimoController from './app/controllers/emprestimo/EntregaEmprestimoController';
+
 import alunoValidator from './Middlewares/AlunoValidator';
-import funcionarioValidator from './Middlewares/FuncionarioValidator'
-import livroValidator from './Middlewares/LivroValidator'
+import funcionarioValidator from './Middlewares/FuncionarioValidator';
+import livroValidator from './Middlewares/LivroValidator';
 import periodicoValidator from './Middlewares/PeriodicoValidator';
 
 const routes = new Router();
@@ -38,6 +42,7 @@ const deleteAlunoController = new DeleteAlunoController();
 
 routes.post('/aluno', alunoValidator, (req, resp) => createAlunoController.create(req, resp));
 routes.get('/alunos', (req, resp) => listAllAlunoController.index(req, resp));
+routes.get('/aluno/:matricula', (req, resp) => listAllAlunoController.listarAlunoMatricula(req, resp));
 routes.get('/aluno/:nome', (req, resp) => listAllAlunoController.listarAlunosNome(req, resp));
 routes.put('/aluno/:matricula', (req, resp) => updateAlunoController.atualizar(req, resp));
 routes.delete('/aluno/delete/:matricula', (req, resp) => deleteAlunoController.delete(req, resp));
@@ -74,6 +79,15 @@ routes.get('/periodicos', (req, resp) => listPeriodicoController.index(req, resp
 routes.get('/periodico/:nome', (req, resp)=> listPeriodicoController.listarPeriodicosNome(req, resp));
 routes.put('/periodico/:id', (req, resp) => updatePeriodicoController.update(req, resp));
 routes.delete('/periodico/delete/:id', (req, resp) => deletePeriodicoController.delete(req, resp));
+
+//Rota para emprestimo
+const emprestimoController = new EmprestimoController();
+const createEmprestimoController = new CreateEmprestimoController();
+const entregaEmprestimoController = new EntregaEmprestimoController()
+
+routes.put('/emprestimo/:id', (req, resp) => emprestimoController.emprestimo(req, resp));
+routes.post('/emprestimo', (req, resp) => createEmprestimoController.create(req, resp));
+routes.put('/devolucao', (req, resp) => entregaEmprestimoController.devolucaoLivro(req, resp));
 
 //Rota para criar sessão de aluno. [IMPORTANTE](ver posição correta no futuro)
 routes.post('/sessionAluno', (req, resp) => SessionAlunoController.create(req, resp));
