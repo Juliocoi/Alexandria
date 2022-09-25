@@ -7,10 +7,9 @@ class CreateEmprestimo {
 
     async createEmprestimo(alunoId, funcionarioId, livroId, dataEmprestimo, estimativaEntrega) {
         try {
-            
+            // valida a quantidade de emprestimos do aluno.
             const emprestimos = await ModelEmprestimo.findAll({ where: { alunoId, dataEntrega: null}})
 
-            console.log(emprestimos.length)
             if(emprestimos.length >= 3){
                 throw new Error('Quantidade máxima de empréstimo excedida')
             }
