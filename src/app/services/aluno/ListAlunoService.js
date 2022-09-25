@@ -16,12 +16,8 @@ class Alunos {
 
     async listaAlunoMatricula(matricula){
         try {
-            const aluno = await ModelAluno.findOne({
-                where: {
-                    matricula,
-                }
-            });
-
+            const aluno = await ModelAluno.findOne({where: { matricula: matricula}});
+            
             return aluno;
 
         } catch (error) {
@@ -32,11 +28,7 @@ class Alunos {
 
     async listaAlunoId(id) {
         try {
-            const aluno = await ModelAluno.findOne({
-                where: {
-                    id,
-                }
-            });
+            const aluno = await ModelAluno.findOne({where: { id: id }});
 
             return aluno;
         } catch (error) {
@@ -50,7 +42,7 @@ class Alunos {
         try{
             // SELECT * from alunos WHERE name = ?
             const aluno = await ModelAluno.findOne({where: { nome: Nome }});
-
+            
             if(!aluno){
                 return { message: 'Aluno não encontrado'};
             }
