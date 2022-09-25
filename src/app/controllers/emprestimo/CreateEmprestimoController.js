@@ -4,18 +4,7 @@ class EmprestimoController {
   constructor() {
     this.service = new CreateEmprestimoService();
   };
-
-  // async updateDisponibilidade(req, resp){
-  //     const { id, disponivel } = req.body;
-  //     console.log(disponivel);
-
-  //     const livro = await this.listService.listaLivroId(id);
-
-  //     if(mudaDisponivel.disponivel === true){
-  //         return 
-  //     }
-  // }
-
+  
   async create(req, resp) {
     const { alunoId, funcionarioId, livroId, dataEmprestimo, estimativaEntrega } = req.body;
 
