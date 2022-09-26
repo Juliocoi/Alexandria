@@ -16,7 +16,7 @@ class listPeriodicoController {
         const { nome } = request.params;
 
         if (!nome) {
-            return response.status(400).json({ 'Erro': 'Você precisa indicar um nome' });
+            return response.status(404).json({ 'Erro': 'Você precisa indicar um nome válido.' });
         }
 
         const periodico = await this.service.listaPeriodicoDados(nome);

@@ -21,8 +21,8 @@ import UpdatePeriodicoController from './app/controllers/periodico/UpdatePeriodi
 import DeletePeriodicoController from './app/controllers/periodico/DeletePeriodicoController';
 
 import SessionAlunoController from './app/controllers/auth/SessionAlunoController';
-import ValidarTokenSessao from './Middlewares/ValidarTokenSessao';
 import SessionFuncionarioController from './app/controllers/auth/SessionFuncionarioController';
+import ValidarTokenSessao from './Middlewares/ValidarTokenSessao';
 
 import EmprestimoController from './app/controllers/emprestimo/EmprestimoController';
 import CreateEmprestimoController from './app/controllers/emprestimo/CreateEmprestimoController';
@@ -35,6 +35,20 @@ import periodicoValidator from './Middlewares/PeriodicoValidator';
 
 const routes = new Router();
 
+const listLivroController = new ListLivroController();
+
+routes.get('/livros', (req, resp) => listLivroController.index(req, resp));
+routes.get('/livro/:nome', (req, resp) => listLivroController.listarLivrosNome(req, resp));
+
+const listPeriodicoController = new ListPeriodicoController();
+
+routes.get('/periodicos', (req, resp) => listPeriodicoController.index(req, resp));
+routes.get('/periodico/:nome', (req, resp) => listPeriodicoController.listarPeriodicosNome(req, resp));
+
+routes.post('/sessionFuncionario', (req, resp) => SessionFuncionarioController.create(req, resp));
+
+routes.use(ValidarTokenSessao);
+
 const createAlunoController = new CreateAlunoController();
 const listAllAlunoController = new ListAllAlunoController();
 const updateAlunoController = new UpdateAlunoController();
@@ -43,40 +57,34 @@ const deleteAlunoController = new DeleteAlunoController();
 routes.post('/aluno', alunoValidator, (req, resp) => createAlunoController.create(req, resp));
 routes.get('/alunos', (req, resp) => listAllAlunoController.index(req, resp));
 routes.get('/aluno/:matricula', (req, resp) => listAllAlunoController.listarAlunoMatricula(req, resp));
-routes.get('/aluno/:nome', (req, resp) => listAllAlunoController.listarAlunosNome(req, resp));
 routes.put('/aluno/:matricula', (req, resp) => updateAlunoController.atualizar(req, resp));
 routes.delete('/aluno/delete/:matricula', (req, resp) => deleteAlunoController.delete(req, resp));
 
-const createFuncionarioController = new CreateFuncionarioController();
+
 const listAllFuncionarioController = new ListAllFuncionarioController();
 const updateFuncionarioController = new UpdateFuncionarioController();
 const deleteFuncionarioController = new DeleteFuncionarioController();
- 
-routes.post('/funcionario', funcionarioValidator, (req, resp) => createFuncionarioController.create(req, resp));
+const createFuncionarioController = new CreateFuncionarioController();
+
+routes.post('/funcionario', (req, resp) => createFuncionarioController.create(req, resp));
 routes.get('/funcionarios', (req, resp) => listAllFuncionarioController.index(req, resp));
-routes.get('/funcionario/:nome', (req, resp) => listAllFuncionarioController.listarFuncionariosNome(req, resp));
+routes.get('/funcionario/:matricula', (req, resp) => listAllFuncionarioController.listarFuncionariosMatricula(req, resp));
 routes.put('/funcionario/:matricula', (req, resp) => updateFuncionarioController.update(req, resp));
 routes.delete('/funcionario/delete/:matricula', (req, resp) => deleteFuncionarioController.delete(req, resp));
 
 const createLivroController = new CreateLivroController();
-const listLivroController = new ListLivroController();
 const updateLivroController = new UpdateLivroController();
 const deleteLivrosController = new DeleteLivrosController();
 
-routes.post('/livros', livroValidator, (req, resp) => createLivroController.create(req, resp));
-routes.get('/livros', (req, resp) => listLivroController.index(req, resp));
-routes.get('/livro/:nome', (req, resp) => listLivroController.listarLivrosNome(req, resp));
+routes.post('/livro', (req, resp) => createLivroController.create(req, resp));
 routes.put('/livro/:id', (req, resp) => updateLivroController.update(req, resp));
 routes.delete('/livro/delete/:id', (req, resp) => deleteLivrosController.delete(req, resp));
 
 const createPeriodicoController = new CreatePeriodicoController();
-const listPeriodicoController = new ListPeriodicoController();
 const updatePeriodicoController = new UpdatePeriodicoController();
 const deletePeriodicoController = new DeletePeriodicoController();
 
-routes.post('/periodico', periodicoValidator, (req, resp) => createPeriodicoController.create(req, resp));
-routes.get('/periodicos', (req, resp) => listPeriodicoController.index(req, resp));
-routes.get('/periodico/:nome', (req, resp)=> listPeriodicoController.listarPeriodicosNome(req, resp));
+routes.post('/periodico', (req, resp) => createPeriodicoController.create(req, resp));
 routes.put('/periodico/:id', (req, resp) => updatePeriodicoController.update(req, resp));
 routes.delete('/periodico/delete/:id', (req, resp) => deletePeriodicoController.delete(req, resp));
 
@@ -89,12 +97,6 @@ routes.put('/emprestimo/:id', (req, resp) => emprestimoController.emprestimo(req
 routes.post('/emprestimo', (req, resp) => createEmprestimoController.create(req, resp));
 routes.put('/devolucao', (req, resp) => entregaEmprestimoController.devolucaoLivro(req, resp));
 
-//Rota para criar sessão de aluno. [IMPORTANTE](ver posição correta no futuro)
-routes.post('/sessionAluno', (req, resp) => SessionAlunoController.create(req, resp));
-
-routes.post('/sessionFuncionario', (req, resp) => SessionFuncionarioController.create(req, resp));
-
-//middleware global - está no local errado, verificar antes do commit
-routes.use(ValidarTokenSessao);
+//routes.post('/sessionAluno', (req, resp) => SessionAlunoController.create(req, resp));
 
 export default routes;

@@ -9,7 +9,7 @@ class CreateFuncionarioController{
     async create(request, response) {
         
         const {matricula, senha, nome, email, dataDeNascimento, mae, pai, tipoFuncionario } = request.body;
-
+        console.log(request.body)
         const funcionario = await this.service.createFuncionario(matricula, senha, nome, email, dataDeNascimento, mae, pai, tipoFuncionario);
 
         return response.status(200).json(funcionario);

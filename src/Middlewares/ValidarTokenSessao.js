@@ -1,12 +1,12 @@
 import jwt from 'jsonwebtoken';
-import ListAlunoService from '../app/services/aluno/ListAlunoService'
+import ListFuncionarioService from '../app/services/funcionario/ListFuncionarioService'
 
 function ValidarTokenSessao(req, resp, next){
     //obtendo o token para validação. O token vem no header da requisição. Aqui vamos verificar se o token está sendo passado.
-    const token = req.headers.authorizarion;
-
+    const token = req.headers.authorization;
+    
     if(!token){
-        return resp.status(401).json({error: "Você precisa estar logado"});
+        return resp.status(401).json({error: "Você precisa estar logado(a) para realizar esta operação."});
          
     }
     // tratando o token, que chega com um 'Bearer(espaço) token'.
@@ -16,13 +16,13 @@ function ValidarTokenSessao(req, resp, next){
         const validarToken = jwt.verify(tratarToken, process.env.JWT_PRIVATE_KEY);
         //verifica se o dia e a hora que o token foi expirado é maior que a data atual, se sim o token é inválido. A verificação pode ser inválida pois o verify já valida o tempo de expiração do token.
         if(new Date() > validarToken.exp * 1000){
-            return resp.status(401).json({error: "Token expirado"});
+            return resp.status(401).json({error: "Token expirado."});
         }
-        const listAlunoService = new ListAlunoService();
-        const verificaId = listAlunoService.listaAlunoId(validarToken.id);
+        const listFuncionarioService = new ListFuncionarioService();
+        const verificaId = listFuncionarioService.listaFuncionarioId(validarToken.id);
 
         if(!verificaId){
-            return resp.status(401).json({erro: "Aluno não encontrado"});
+            return resp.status(401).json({erro: "Funcionario(a) não encontrado(a)."});
         }
 
     } catch (error) {

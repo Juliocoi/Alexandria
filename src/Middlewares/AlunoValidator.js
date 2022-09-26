@@ -10,7 +10,7 @@ export default async function alunoValidator(request, response, next){
         
         matricula: yup.number().integer().nullable().required("Matricula é obrigatória").typeError("Matricula recebe somente números"),
         senha: yup.string().nullable().required("Senha é obrigatória"),
-        nome: yup.string().nullable().min(14, "nome deve ter no mínimo 14 caracteres").required("Nome é obrigatório").matches(regex,"Nome inválido" ),
+        nome: yup.string().nullable().min(4, "nome deve ter no mínimo 4 caracteres").required("Nome é obrigatório").matches(regex,"Nome inválido" ),
         email: yup.string().email("Digite um e-mail válido").nullable().required("E-mail é obrigatório"),
         dataDeNascimento: yup.date().nullable().required("Data de nascimento é obrigatória").typeError("Digite uma data válida"),
         mae: yup.string().nullable().required("Mãe é obrigatória").matches(regex,"Nome da mãe inválido"),

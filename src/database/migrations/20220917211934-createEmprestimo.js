@@ -2,7 +2,7 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    return await queryInterface.createTable("emprestimo", {
+    return await queryInterface.createTable("emprestimos", {
       id: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,

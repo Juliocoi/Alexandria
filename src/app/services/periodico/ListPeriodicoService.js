@@ -15,14 +15,10 @@ class Periodicos {
     }
 }
 
-   async listaPeriodicoDados(periodicoNome){
+   async listaPeriodicoDados(nome){
     try{
-        const periodico = await ModelPeriodico.findOne({where: { nome: periodicoNome }});
-
-        if(!periodico){
-            return { message: 'Periodico não encontrado'}
-        }
-
+        const periodico = await ModelPeriodico.findOne({where: { nome: nome }});
+        
         return periodico;
         
     } catch(error){
