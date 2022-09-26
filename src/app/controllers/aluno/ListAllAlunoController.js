@@ -27,7 +27,7 @@ class ListAlunoController {
         const { nome } = request.params;
         
         if (!nome) {
-            return response.status(404).json({ Erro: 'Você precisa indicar uma matrícula válida.' })
+            return response.status(404).json({ Erro: 'Você precisa indicar uma nome válido.' })
         }
 
         const aluno = await this.service.listaAlunoDados(nome);

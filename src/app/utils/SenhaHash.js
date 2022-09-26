@@ -4,6 +4,7 @@ class SenhaHash {
     constructor(){};
     //cria senha criptografada
     static hash(senha){
+        console.log(senha);
         const senhaHash = crypto.pbkdf2Sync(senha, process.env.PASSWORD_SALT, 10000, 64, 'SHA512').toString('hex');
 
         return senhaHash;

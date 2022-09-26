@@ -12,7 +12,7 @@ class CreatePeriodicoController {
 
         const periodico = await this.service.createPeriodico(issn, nome, anoLancamento, edicao, editora, estante, palavraChave);
 
-        return response.status(200).json(periodico);
+        return response.status(201).json(periodico);
     };
 
 };

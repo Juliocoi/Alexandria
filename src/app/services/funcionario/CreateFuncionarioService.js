@@ -7,7 +7,7 @@ class CreateFuncionarioService {
     constructor () { };
 
     async createFuncionario(matricula, senha, nome, email, dataDeNascimento, mae, pai, tipoFuncionario){
-
+        console.log("Create service: " + senha)
         const senhaHash = SenhaHash.hash(senha); 
         
         try {

@@ -22,10 +22,8 @@ class CreateAlunoService {
         pai
       });
 
-      return {
-        sucess: true,
-        message: newAluno
-      }
+      return newAluno;
+      
     } catch (error) {
       console.log(error)
       return { erro: error.message };

@@ -10,7 +10,7 @@ class EmprestimoController {
 
     const emprestimo = await this.service.createEmprestimo(alunoId, funcionarioId, livroId, dataEmprestimo, estimativaEntrega);
 
-    return resp.status(200).json(emprestimo);
+    return resp.status(201).json(emprestimo);
 
   };
 }
