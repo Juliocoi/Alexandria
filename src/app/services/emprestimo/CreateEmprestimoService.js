@@ -15,11 +15,10 @@ class CreateEmprestimo {
             }
             // verifica se o livro está disponível para empréstimo
             const livro = await ModelLivro.findByPk(livroId)
-            
             if (!livro.disponivel) {
                 throw new Error('Este livro já está emprestado')
             }
-
+            
             const novoEmprestimo = await ModelEmprestimo.create({ id: v4(), alunoId, funcionarioId, livroId, dataEmprestimo, estimativaEntrega });
 
             livro.disponivel = false;

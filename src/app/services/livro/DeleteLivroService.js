@@ -1,6 +1,5 @@
 import ModelLivro from '../../models/catalogo/ModelLivro';
 
-
 class DeleteLivroService{
     constructor(){}
 
@@ -8,10 +7,6 @@ class DeleteLivroService{
         try {
         const livro = await ModelLivro.findByPk(id);
                
-        if (!livro){
-            return { message: 'Livro não encontrado'}
-        };
-
         const livroDeletado = await livro.destroy();
 
         return {mensagem: "Livro deletado com sucesso." }

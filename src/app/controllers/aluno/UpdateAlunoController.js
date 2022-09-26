@@ -11,7 +11,7 @@ class AtualizarAlunoController {
 
         const atualizacao = await this.service.atualizar(matricula, senha, nome, email, dataDeNascimento, mae, pai);
 
-        response.status(200).json(atualizacao);
+        response.status(201).json(atualizacao);
     }
 }
 

@@ -11,7 +11,7 @@ class CreateAlunoController {
 
         const aluno = await this.service.createAluno(matricula, senha, nome, email, dataDeNascimento, mae, pai);
         
-        return response.status(200).json(aluno);
+        return response.status(201).json(aluno);
     }
 
 };
