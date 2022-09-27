@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import ListFuncionarioService from '../app/services/funcionario/ListFuncionarioService'
 
-function ValidarTokenSessao(req, resp, next){
+async function ValidarTokenSessao(req, resp, next){
     //obtendo o token para validação. O token vem no header da requisição. Aqui vamos verificar se o token está sendo passado.
     const token = req.headers.authorization;
     
@@ -19,7 +19,7 @@ function ValidarTokenSessao(req, resp, next){
             return resp.status(401).json({error: "Token expirado."});
         }
         const listFuncionarioService = new ListFuncionarioService();
-        const verificaId = listFuncionarioService.listaFuncionarioId(validarToken.id);
+        const verificaId = await listFuncionarioService.listaFuncionarioId(validarToken.id);
 
         if(!verificaId){
             return resp.status(401).json({erro: "Funcionario(a) não encontrado(a)."});

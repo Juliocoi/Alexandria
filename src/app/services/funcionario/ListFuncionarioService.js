@@ -9,7 +9,6 @@ class Funcionarios {
       return funcionarios;
 
     } catch (error) {
-      console.log(error);
       return { erro: error.message }
 
     }
@@ -17,14 +16,15 @@ class Funcionarios {
 
   async listaFuncionarioMatricula(matricula) {
     try {
-      const funcionario = await ModelFuncionario.findOne({
-        where: { matricula }
-      });
+      const funcionario = await ModelFuncionario.findOne({ where: { matricula }});
 
+      if (!funcionario) {
+        
+        return { 'Erro': "Você precisa indicar uma matrícula válida." };
+      }
       return funcionario;
 
     } catch (error) {
-      console.log(error);
       return { erro: error.message };
     };
   };
@@ -35,7 +35,6 @@ class Funcionarios {
 
       return funcionario;
     } catch (error) {
-      console.log(error);
       return { error: error.message };
     };
   };
@@ -46,9 +45,8 @@ class Funcionarios {
       const funcionario = await ModelFuncionario.findOne({ where: { nome: funcionarioNome } });
 
       return funcionario;
-
+           
     } catch (error) {
-      console.log(error);
       return { erro: error.message };
     };
   };

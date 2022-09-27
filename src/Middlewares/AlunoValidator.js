@@ -1,9 +1,7 @@
 import * as yup from 'yup';
 
-const regex = /^[A-Za-z]+((\s)?([A-Za-z])+)*$/g
-
-
-
+const regex = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]+$/
+// /^[A-Za-z]+((\s)?([A-Za-z])+)*$/g
 
 export default async function alunoValidator(request, response, next){
     const schema = yup.object().shape({
