@@ -85,9 +85,8 @@ npm start
 
 ## :books: Contribuidores
 
-Contribuidores do projeto:
-    :smiley: [Julio Cesar](https://github.com/Juliocoi)
-    :wink: [Katherine](https://github.com/hanakathy)
+    :smiley: [Julio Cesar](https://github.com/Juliocoi) |
+    :wink: [Katherine](https://github.com/hanakathy) |
     :sunglasses: [Lucas](https://github.com/Lucas98s)
 
 ## :books: Apoio
