@@ -1,0 +1,1494 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Alexandria",
+    "description": "O Alexandria é uma API empregada no gerenciamento de uma biblioteca universitária. O sistema será responsável pelo registro e controle dos títulos da biblioteca e de seus usuários, sendo os usuários do sistema os funcionário da biblioteca e os alunos interessados em realizar empréstimos e consulta de acervo no local.A API  trará suporte tão somente à biblioteca da instituição de ensino, estando fora de sua abrangência qualquer outro tipo de cadastro e/ou gerenciamento de dados que por ventura a instituição possua.",
+    "contact": {},
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3030",
+      "description": "Localhost"
+    }
+  ],
+  "paths": {
+    "/livros": {
+      "get": {
+        "tags": [
+          "Rotas que não exigem autenticação"
+        ],
+        "summary": "Listar todos Livros",
+        "operationId": "ListartodosLivros",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/livro/poneglyph%20basico": {
+      "get": {
+        "tags": [
+          "Rotas que não exigem autenticação"
+        ],
+        "summary": "Listar livro por nome",
+        "operationId": "Listarlivropornome",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/periodicos": {
+      "get": {
+        "tags": [
+          "Rotas que não exigem autenticação"
+        ],
+        "summary": "list all periódicos",
+        "operationId": "listallperiódicos",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/periodico/clima%20na%20grandLine": {
+      "get": {
+        "tags": [
+          "Rotas que não exigem autenticação"
+        ],
+        "summary": "List periódicos nome",
+        "operationId": "Listperiódicosnome",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/sessionFuncionario": {
+      "post": {
+        "tags": [
+          "Session"
+        ],
+        "summary": "login funcionário",
+        "operationId": "loginfuncionário",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/loginfuncionriorequest"
+                  },
+                  {
+                    "example": {
+                      "matricula": 54123,
+                      "senha": "milflores"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "matricula": 54123,
+                "senha": "milflores"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/funcionario": {
+      "post": {
+        "tags": [
+          "Funcionários"
+        ],
+        "summary": "criar FUNC",
+        "operationId": "criarFUNC",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/criarFUNCRequest"
+                  },
+                  {
+                    "example": {
+                      "matricula": 54189,
+                      "senha": "amoalgodaodoce",
+                      "nome": "Tony Tony Chopper",
+                      "email": "tony.choper@universidade.com",
+                      "dataDeNascimento": "12/24/2004",
+                      "mae": "Kureha",
+                      "pai": "Hiriluk",
+                      "tipoFuncionario": "0"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "matricula": 54189,
+                "senha": "amoalgodaodoce",
+                "nome": "Tony Tony Chopper",
+                "email": "tony.choper@universidade.com",
+                "dataDeNascimento": "12/24/2004",
+                "mae": "Kureha",
+                "pai": "Hiriluk",
+                "tipoFuncionario": "0"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/funcionarios": {
+      "get": {
+        "tags": [
+          "Funcionários"
+        ],
+        "summary": "List todos FUNC",
+        "operationId": "ListtodosFUNC",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/funcionario/54137": {
+      "get": {
+        "tags": [
+          "Funcionários"
+        ],
+        "summary": "Listar FUNC Matricula",
+        "operationId": "ListarFUNCMatricula",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Funcionários"
+        ],
+        "summary": "Atualizar FUNC",
+        "operationId": "AtualizarFUNC",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/AtualizarFUNCRequest"
+                  },
+                  {
+                    "example": {
+                      "matricula": 54137,
+                      "senha": "suuperfranky",
+                      "nome": "Super Franky",
+                      "email": "battlefranky@universidade.com",
+                      "dataDeNascimento": "3/9/1985",
+                      "mae": "Cutty MÃ£e",
+                      "pai": "Cutty Pai",
+                      "tipoFuncionario": "0"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "matricula": 54137,
+                "senha": "suuperfranky",
+                "nome": "Super Franky",
+                "email": "battlefranky@universidade.com",
+                "dataDeNascimento": "3/9/1985",
+                "mae": "Cutty MÃ£e",
+                "pai": "Cutty Pai",
+                "tipoFuncionario": "0"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/funcionario/delete/54137": {
+      "delete": {
+        "tags": [
+          "Funcionários"
+        ],
+        "summary": "Del FUNC",
+        "operationId": "DelFUNC",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/aluno": {
+      "post": {
+        "tags": [
+          "Alunos"
+        ],
+        "summary": "Criar aluno",
+        "operationId": "Criaraluno",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CriaralunoRequest"
+                  },
+                  {
+                    "example": {
+                      "matricula": 12365,
+                      "senha": "melhorespadachimdomundo",
+                      "nome": "Roronoa Zoro",
+                      "email": "r.zoro@aluno.com",
+                      "dataDeNascimento": "11/11/1998",
+                      "mae": "Roronoa Mãe"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "matricula": 12365,
+                "senha": "melhorespadachimdomundo",
+                "nome": "Roronoa Zoro",
+                "email": "r.zoro@aluno.com",
+                "dataDeNascimento": "11/11/1998",
+                "mae": "Roronoa Mãe"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/alunos": {
+      "get": {
+        "tags": [
+          "Alunos"
+        ],
+        "summary": "Listar  alunos",
+        "operationId": "Listaralunos",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/aluno/12345": {
+      "get": {
+        "tags": [
+          "Alunos"
+        ],
+        "summary": "Listar aluno por matrícula",
+        "operationId": "Listaralunopormatrícula",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/aluno/12358": {
+      "put": {
+        "tags": [
+          "Alunos"
+        ],
+        "summary": "Atualizar aluno",
+        "operationId": "Atualizaraluno",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/AtualizaralunoRequest"
+                  },
+                  {
+                    "example": {
+                      "senha": "e644f8f3407061dde5cb69fbf4c816576af410c959b9c3fd387e6c6d739e50ee07eda2c7c884c8466ab600267d8affc9857ed59d6c0bc7ef7213eeeaac3dae3b",
+                      "nome": "Nami, A Gatuna",
+                      "email": "gatuna@aluno.com",
+                      "dataDeNascimento": "1999-07-03T03:00:00.000Z",
+                      "mae": "Bellemere"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "senha": "e644f8f3407061dde5cb69fbf4c816576af410c959b9c3fd387e6c6d739e50ee07eda2c7c884c8466ab600267d8affc9857ed59d6c0bc7ef7213eeeaac3dae3b",
+                "nome": "Nami, A Gatuna",
+                "email": "gatuna@aluno.com",
+                "dataDeNascimento": "1999-07-03T03:00:00.000Z",
+                "mae": "Bellemere"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/aluno/delete/12358": {
+      "delete": {
+        "tags": [
+          "Alunos"
+        ],
+        "summary": "DELETE aluno",
+        "operationId": "DELETEaluno",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/livro": {
+      "post": {
+        "tags": [
+          "Livros"
+        ],
+        "summary": "Criar livro",
+        "operationId": "Criarlivro",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CriarlivroRequest"
+                  },
+                  {
+                    "example": {
+                      "ISBN": 159643,
+                      "nome": "Medicina Humana",
+                      "autor": "Hiriluk",
+                      "anoLancamento": "07/20/2018",
+                      "coAutor": "Doctorine",
+                      "edicao": 2,
+                      "editora": "Reino de Drum",
+                      "estante": "3L",
+                      "disponivel": true,
+                      "palavraChave": "medicina"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "ISBN": 159643,
+                "nome": "Medicina Humana",
+                "autor": "Hiriluk",
+                "anoLancamento": "07/20/2018",
+                "coAutor": "Doctorine",
+                "edicao": 2,
+                "editora": "Reino de Drum",
+                "estante": "3L",
+                "disponivel": true,
+                "palavraChave": "medicina"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/livro/ffb9174d-5772-4bd8-ae34-d6f72d2be937": {
+      "put": {
+        "tags": [
+          "Livros"
+        ],
+        "summary": "Atualizar livro",
+        "operationId": "Atualizarlivro",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/AtualizarlivroRequest"
+                  },
+                  {
+                    "example": {
+                      "isbn": 178655,
+                      "nome": "Poneglyph Básico",
+                      "autor": "Academia de Poneglyph",
+                      "anoLancamento": "2020-01-01T03:00:00.000Z",
+                      "coAutor": null,
+                      "edicao": 3,
+                      "editora": "Ohara Editora",
+                      "estante": "1J",
+                      "disponivel": true,
+                      "palavraChave": "HISTÓRIA"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "isbn": 178655,
+                "nome": "Poneglyph Básico",
+                "autor": "Academia de Poneglyph",
+                "anoLancamento": "2020-01-01T03:00:00.000Z",
+                "coAutor": null,
+                "edicao": 3,
+                "editora": "Ohara Editora",
+                "estante": "1J",
+                "disponivel": true,
+                "palavraChave": "HISTÓRIA"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/livro/delete/bf092eee-039b-4abd-83d5-b3b5624a01c2": {
+      "delete": {
+        "tags": [
+          "Livros"
+        ],
+        "summary": "Del livro",
+        "operationId": "Dellivro",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/periodico": {
+      "post": {
+        "tags": [
+          "Periódicos"
+        ],
+        "summary": "Cria periódico",
+        "operationId": "Criaperiódico",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CriaperidicoRequest"
+                  },
+                  {
+                    "example": {
+                      "issn": 254321,
+                      "nome": "Fofocas da GrandeLine",
+                      "anoLancamento": "01/04/2022",
+                      "edicao": 1,
+                      "editora": "Weatheria",
+                      "estante": "4A",
+                      "palavraChave": "Social"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "issn": 254321,
+                "nome": "Fofocas da GrandeLine",
+                "anoLancamento": "01/04/2022",
+                "edicao": 1,
+                "editora": "Weatheria",
+                "estante": "4A",
+                "palavraChave": "Social"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/periodico/4daa25ec-7938-4d8d-a091-980d30c2ab73": {
+      "put": {
+        "tags": [
+          "Periódicos"
+        ],
+        "summary": "Atualizar periódico",
+        "operationId": "Atualizarperiódico",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/AtualizarperidicoRequest"
+                  },
+                  {
+                    "example": {
+                      "issn": 259641,
+                      "nome": "Clima na GrandLine",
+                      "anoLancamento": "2021-03-14T03:00:00.000Z",
+                      "edicao": 15,
+                      "editora": "Weatheria",
+                      "estante": "4A",
+                      "palavraChave": "TEMPO"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "issn": 259641,
+                "nome": "Clima na GrandLine",
+                "anoLancamento": "2021-03-14T03:00:00.000Z",
+                "edicao": 15,
+                "editora": "Weatheria",
+                "estante": "4A",
+                "palavraChave": "TEMPO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/periodico/delete/aeeb50c1-8cb1-404f-8c50-8c2faab8b017": {
+      "delete": {
+        "tags": [
+          "Periódicos"
+        ],
+        "summary": "Delete periódico.",
+        "operationId": "Deleteperiódico.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/emprestimo": {
+      "post": {
+        "tags": [
+          "Empréstimo;"
+        ],
+        "summary": "Criar empréstimo",
+        "operationId": "Criarempréstimo",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CriaremprstimoRequest"
+                  },
+                  {
+                    "example": {
+                      "alunoId": "1a575792-492a-4996-a81b-0c8d228c8534",
+                      "funcionarioId": "7d4684cc-965e-4368-9a4e-29f54d6dcdb6",
+                      "livroId": "8a60ff17-0bd8-4524-9c07-13b1570bb0bf",
+                      "dataEmprestimo": "09/28/2022",
+                      "estimativaEntrega": "05/10/2022"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "alunoId": "1a575792-492a-4996-a81b-0c8d228c8534",
+                "funcionarioId": "7d4684cc-965e-4368-9a4e-29f54d6dcdb6",
+                "livroId": "8a60ff17-0bd8-4524-9c07-13b1570bb0bf",
+                "dataEmprestimo": "09/28/2022",
+                "estimativaEntrega": "05/10/2022"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/emprestimo/12b99f0b-a82b-4288-b304-30b1b012063c": {
+      "put": {
+        "tags": [
+          "Empréstimo;"
+        ],
+        "summary": "Atualizar empréstimo",
+        "operationId": "Atualizarempréstimo",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/AtualizaremprstimoRequest"
+                  },
+                  {
+                    "example": {
+                      "isbn": 123468,
+                      "nome": "Livro teste 2",
+                      "autor": "Kath",
+                      "anoLancamento": "1989",
+                      "coautor": "Lucas",
+                      "edicao": 1,
+                      "editora": "RJ",
+                      "estante": "ES03",
+                      "disponivel": false,
+                      "palavraChave": "Ação"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "isbn": 123468,
+                "nome": "Livro teste 2",
+                "autor": "Kath",
+                "anoLancamento": "1989",
+                "coautor": "Lucas",
+                "edicao": 1,
+                "editora": "RJ",
+                "estante": "ES03",
+                "disponivel": false,
+                "palavraChave": "Ação"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/devolucao": {
+      "put": {
+        "tags": [
+          "Empréstimo;"
+        ],
+        "summary": "Devolução",
+        "operationId": "Devolução",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/DevoluoRequest"
+                  },
+                  {
+                    "example": {
+                      "alunoId": "1a575792-492a-4996-a81b-0c8d228c8534",
+                      "livroId": "8a60ff17-0bd8-4524-9c07-13b1570bb0bf"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "alunoId": "1a575792-492a-4996-a81b-0c8d228c8534",
+                "livroId": "8a60ff17-0bd8-4524-9c07-13b1570bb0bf"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "loginfuncionriorequest": {
+        "title": "loginfuncionriorequest",
+        "required": [
+          "matricula",
+          "senha"
+        ],
+        "type": "object",
+        "properties": {
+          "matricula": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "senha": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "matricula": 54123,
+          "senha": "milflores"
+        }
+      },
+      "criarFUNCRequest": {
+        "title": "criarFUNCRequest",
+        "required": [
+          "matricula",
+          "senha",
+          "nome",
+          "email",
+          "dataDeNascimento",
+          "mae",
+          "pai",
+          "tipoFuncionario"
+        ],
+        "type": "object",
+        "properties": {
+          "matricula": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "senha": {
+            "type": "string"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "dataDeNascimento": {
+            "type": "string"
+          },
+          "mae": {
+            "type": "string"
+          },
+          "pai": {
+            "type": "string"
+          },
+          "tipoFuncionario": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "matricula": 54189,
+          "senha": "amoalgodaodoce",
+          "nome": "Tony Tony Chopper",
+          "email": "tony.choper@universidade.com",
+          "dataDeNascimento": "12/24/2004",
+          "mae": "Kureha",
+          "pai": "Hiriluk",
+          "tipoFuncionario": "0"
+        }
+      },
+      "AtualizarFUNCRequest": {
+        "title": "AtualizarFUNCRequest",
+        "required": [
+          "matricula",
+          "senha",
+          "nome",
+          "email",
+          "dataDeNascimento",
+          "mae",
+          "pai",
+          "tipoFuncionario"
+        ],
+        "type": "object",
+        "properties": {
+          "matricula": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "senha": {
+            "type": "string"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "dataDeNascimento": {
+            "type": "string"
+          },
+          "mae": {
+            "type": "string"
+          },
+          "pai": {
+            "type": "string"
+          },
+          "tipoFuncionario": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "matricula": 54137,
+          "senha": "suuperfranky",
+          "nome": "Super Franky",
+          "email": "battlefranky@universidade.com",
+          "dataDeNascimento": "3/9/1985",
+          "mae": "Cutty MÃ£e",
+          "pai": "Cutty Pai",
+          "tipoFuncionario": "0"
+        }
+      },
+      "CriaralunoRequest": {
+        "title": "CriaralunoRequest",
+        "required": [
+          "matricula",
+          "senha",
+          "nome",
+          "email",
+          "dataDeNascimento",
+          "mae"
+        ],
+        "type": "object",
+        "properties": {
+          "matricula": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "senha": {
+            "type": "string"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "dataDeNascimento": {
+            "type": "string"
+          },
+          "mae": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "matricula": 12365,
+          "senha": "melhorespadachimdomundo",
+          "nome": "Roronoa Zoro",
+          "email": "r.zoro@aluno.com",
+          "dataDeNascimento": "11/11/1998",
+          "mae": "Roronoa Mãe"
+        }
+      },
+      "AtualizaralunoRequest": {
+        "title": "AtualizaralunoRequest",
+        "required": [
+          "senha",
+          "nome",
+          "email",
+          "dataDeNascimento",
+          "mae"
+        ],
+        "type": "object",
+        "properties": {
+          "senha": {
+            "type": "string"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "dataDeNascimento": {
+            "type": "string"
+          },
+          "mae": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "senha": "e644f8f3407061dde5cb69fbf4c816576af410c959b9c3fd387e6c6d739e50ee07eda2c7c884c8466ab600267d8affc9857ed59d6c0bc7ef7213eeeaac3dae3b",
+          "nome": "Nami, A Gatuna",
+          "email": "gatuna@aluno.com",
+          "dataDeNascimento": "1999-07-03T03:00:00.000Z",
+          "mae": "Bellemere"
+        }
+      },
+      "CriarlivroRequest": {
+        "title": "CriarlivroRequest",
+        "required": [
+          "ISBN",
+          "nome",
+          "autor",
+          "anoLancamento",
+          "coAutor",
+          "edicao",
+          "editora",
+          "estante",
+          "disponivel",
+          "palavraChave"
+        ],
+        "type": "object",
+        "properties": {
+          "ISBN": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "autor": {
+            "type": "string"
+          },
+          "anoLancamento": {
+            "type": "string"
+          },
+          "coAutor": {
+            "type": "string"
+          },
+          "edicao": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "editora": {
+            "type": "string"
+          },
+          "estante": {
+            "type": "string"
+          },
+          "disponivel": {
+            "type": "boolean"
+          },
+          "palavraChave": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "ISBN": 159643,
+          "nome": "Medicina Humana",
+          "autor": "Hiriluk",
+          "anoLancamento": "07/20/2018",
+          "coAutor": "Doctorine",
+          "edicao": 2,
+          "editora": "Reino de Drum",
+          "estante": "3L",
+          "disponivel": true,
+          "palavraChave": "medicina"
+        }
+      },
+      "AtualizarlivroRequest": {
+        "title": "AtualizarlivroRequest",
+        "required": [
+          "isbn",
+          "nome",
+          "autor",
+          "anoLancamento",
+          "coAutor",
+          "edicao",
+          "editora",
+          "estante",
+          "disponivel",
+          "palavraChave"
+        ],
+        "type": "object",
+        "properties": {
+          "isbn": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "autor": {
+            "type": "string"
+          },
+          "anoLancamento": {
+            "type": "string"
+          },
+          "coAutor": {
+            "type": "string",
+            "nullable": true
+          },
+          "edicao": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "editora": {
+            "type": "string"
+          },
+          "estante": {
+            "type": "string"
+          },
+          "disponivel": {
+            "type": "boolean"
+          },
+          "palavraChave": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "isbn": 178655,
+          "nome": "Poneglyph Básico",
+          "autor": "Academia de Poneglyph",
+          "anoLancamento": "2020-01-01T03:00:00.000Z",
+          "coAutor": null,
+          "edicao": 3,
+          "editora": "Ohara Editora",
+          "estante": "1J",
+          "disponivel": true,
+          "palavraChave": "HISTÓRIA"
+        }
+      },
+      "CriaperidicoRequest": {
+        "title": "CriaperidicoRequest",
+        "required": [
+          "issn",
+          "nome",
+          "anoLancamento",
+          "edicao",
+          "editora",
+          "estante",
+          "palavraChave"
+        ],
+        "type": "object",
+        "properties": {
+          "issn": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "anoLancamento": {
+            "type": "string"
+          },
+          "edicao": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "editora": {
+            "type": "string"
+          },
+          "estante": {
+            "type": "string"
+          },
+          "palavraChave": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "issn": 254321,
+          "nome": "Fofocas da GrandeLine",
+          "anoLancamento": "01/04/2022",
+          "edicao": 1,
+          "editora": "Weatheria",
+          "estante": "4A",
+          "palavraChave": "Social"
+        }
+      },
+      "AtualizarperidicoRequest": {
+        "title": "AtualizarperidicoRequest",
+        "required": [
+          "issn",
+          "nome",
+          "anoLancamento",
+          "edicao",
+          "editora",
+          "estante",
+          "palavraChave"
+        ],
+        "type": "object",
+        "properties": {
+          "issn": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "anoLancamento": {
+            "type": "string"
+          },
+          "edicao": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "editora": {
+            "type": "string"
+          },
+          "estante": {
+            "type": "string"
+          },
+          "palavraChave": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "issn": 259641,
+          "nome": "Clima na GrandLine",
+          "anoLancamento": "2021-03-14T03:00:00.000Z",
+          "edicao": 15,
+          "editora": "Weatheria",
+          "estante": "4A",
+          "palavraChave": "TEMPO"
+        }
+      },
+      "CriaremprstimoRequest": {
+        "title": "CriaremprstimoRequest",
+        "required": [
+          "alunoId",
+          "funcionarioId",
+          "livroId",
+          "dataEmprestimo",
+          "estimativaEntrega"
+        ],
+        "type": "object",
+        "properties": {
+          "alunoId": {
+            "type": "string"
+          },
+          "funcionarioId": {
+            "type": "string"
+          },
+          "livroId": {
+            "type": "string"
+          },
+          "dataEmprestimo": {
+            "type": "string"
+          },
+          "estimativaEntrega": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "alunoId": "1a575792-492a-4996-a81b-0c8d228c8534",
+          "funcionarioId": "7d4684cc-965e-4368-9a4e-29f54d6dcdb6",
+          "livroId": "8a60ff17-0bd8-4524-9c07-13b1570bb0bf",
+          "dataEmprestimo": "09/28/2022",
+          "estimativaEntrega": "05/10/2022"
+        }
+      },
+      "AtualizaremprstimoRequest": {
+        "title": "AtualizaremprstimoRequest",
+        "required": [
+          "isbn",
+          "nome",
+          "autor",
+          "anoLancamento",
+          "coautor",
+          "edicao",
+          "editora",
+          "estante",
+          "disponivel",
+          "palavraChave"
+        ],
+        "type": "object",
+        "properties": {
+          "isbn": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "autor": {
+            "type": "string"
+          },
+          "anoLancamento": {
+            "type": "string"
+          },
+          "coautor": {
+            "type": "string"
+          },
+          "edicao": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "editora": {
+            "type": "string"
+          },
+          "estante": {
+            "type": "string"
+          },
+          "disponivel": {
+            "type": "boolean"
+          },
+          "palavraChave": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "isbn": 123468,
+          "nome": "Livro teste 2",
+          "autor": "Kath",
+          "anoLancamento": "1989",
+          "coautor": "Lucas",
+          "edicao": 1,
+          "editora": "RJ",
+          "estante": "ES03",
+          "disponivel": false,
+          "palavraChave": "Ação"
+        }
+      },
+      "DevoluoRequest": {
+        "title": "DevoluoRequest",
+        "required": [
+          "alunoId",
+          "livroId"
+        ],
+        "type": "object",
+        "properties": {
+          "alunoId": {
+            "type": "string"
+          },
+          "livroId": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "alunoId": "1a575792-492a-4996-a81b-0c8d228c8534",
+          "livroId": "8a60ff17-0bd8-4524-9c07-13b1570bb0bf"
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [],
+  "tags": [
+    {
+      "name": "Rotas que não exigem autenticação"
+    },
+    {
+      "name": "Session"
+    },
+    {
+      "name": "Funcionários"
+    },
+    {
+      "name": "Alunos"
+    },
+    {
+      "name": "Livros"
+    },
+    {
+      "name": "Periódicos"
+    },
+    {
+      "name": "Empréstimo;"
+    }
+  ]
+}
