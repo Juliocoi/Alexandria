@@ -30,14 +30,24 @@
         "deprecated": false
       }
     },
-    "/livro/poneglyph%20basico": {
+    "/livro/{nome}": {
       "get": {
         "tags": [
           "Rotas que não exigem autenticação"
         ],
         "summary": "Listar livro por nome",
         "operationId": "Listarlivropornome",
-        "parameters": [],
+        "parameters": [
+            {
+              "in": "path",
+              "name": "nome",
+              "description": "Busca livro por nome",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -52,8 +62,8 @@
         "tags": [
           "Rotas que não exigem autenticação"
         ],
-        "summary": "list all periódicos",
-        "operationId": "listallperiódicos",
+        "summary": "listar todos os periódicos",
+        "operationId": "listarperiódicos",
         "parameters": [],
         "responses": {
           "200": {
@@ -64,14 +74,24 @@
         "deprecated": false
       }
     },
-    "/periodico/clima%20na%20grandLine": {
+    "/periodico/{nome}": {
       "get": {
         "tags": [
           "Rotas que não exigem autenticação"
         ],
-        "summary": "List periódicos nome",
-        "operationId": "Listperiódicosnome",
-        "parameters": [],
+        "summary": "List periódico por nome",
+        "operationId": "Listarperiódiconome",
+        "parameters": [
+            {
+              "in": "path",
+              "name": "nome",
+              "description": "Busca periódico por nome",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -116,11 +136,36 @@
         },
         "responses": {
           "200": {
+            "description": "Login realizado com sucesso.",
+            "headers": {}
+          },
+          "401": {
+            "description": "Error: Usuário e/ou senha incorretos"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/funcionarios": {
+      "get": {
+        "tags": [
+          "Funcionários"
+        ],
+        "summary": "List todos FUNC",
+        "operationId": "ListtodosFUNC",
+        "parameters": [],
+        "responses": {
+          "200": {
             "description": "",
             "headers": {}
           }
         },
-        "deprecated": false
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       }
     },
     "/funcionario": {
@@ -182,36 +227,24 @@
         ]
       }
     },
-    "/funcionarios": {
-      "get": {
-        "tags": [
-          "Funcionários"
-        ],
-        "summary": "List todos FUNC",
-        "operationId": "ListtodosFUNC",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {}
-          }
-        },
-        "deprecated": false,
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
-    "/funcionario/54137": {
+    "/funcionario/{matricula}": {
       "get": {
         "tags": [
           "Funcionários"
         ],
         "summary": "Listar FUNC Matricula",
         "operationId": "ListarFUNCMatricula",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matricula",
+            "description": "Busca funcionário pela matrícula",
+            "required": true,
+            "schema":{
+              "type": "integer"
+            }            
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -231,7 +264,17 @@
         ],
         "summary": "Atualizar FUNC",
         "operationId": "AtualizarFUNC",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matricula",
+            "description": "Atualiza funcionário pela matrícula",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
         "requestBody": {
           "description": "",
           "content": {
@@ -243,26 +286,24 @@
                   },
                   {
                     "example": {
-                      "matricula": 54137,
-                      "senha": "suuperfranky",
-                      "nome": "Super Franky",
-                      "email": "battlefranky@universidade.com",
-                      "dataDeNascimento": "3/9/1985",
-                      "mae": "Cutty MÃ£e",
-                      "pai": "Cutty Pai",
+                      "senha": "amoalgodaodoce",
+                      "nome": "Tony Tony Chopper",
+                      "email": "tony.choper@universidade.com",
+                      "dataDeNascimento": "12/24/2004",
+                      "mae": "Kureha",
+                      "pai": "Hiriluk",
                       "tipoFuncionario": "0"
                     }
                   }
                 ]
               },
               "example": {
-                "matricula": 54137,
-                "senha": "suuperfranky",
-                "nome": "Super Franky",
-                "email": "battlefranky@universidade.com",
-                "dataDeNascimento": "3/9/1985",
-                "mae": "Cutty MÃ£e",
-                "pai": "Cutty Pai",
+                "senha": "amoalgodaodoce",
+                "nome": "Tony Tony Chopper",
+                "email": "tony.choper@universidade.com",
+                "dataDeNascimento": "12/24/2004",
+                "mae": "Kureha",
+                "pai": "Hiriluk",
                 "tipoFuncionario": "0"
               }
             }
@@ -283,13 +324,45 @@
         ]
       }
     },
-    "/funcionario/delete/54137": {
+    "/funcionario/delete/{matricula}": {
       "delete": {
         "tags": [
           "Funcionários"
         ],
         "summary": "Del FUNC",
         "operationId": "DelFUNC",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matricula",
+            "description": "Deleta funcionário pela matrícula",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/alunos": {
+      "get": {
+        "tags": [
+          "Alunos"
+        ],
+        "summary": "Listar  alunos",
+        "operationId": "Listaralunos",
         "parameters": [],
         "responses": {
           "200": {
@@ -360,36 +433,24 @@
         ]
       }
     },
-    "/alunos": {
-      "get": {
-        "tags": [
-          "Alunos"
-        ],
-        "summary": "Listar  alunos",
-        "operationId": "Listaralunos",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "",
-            "headers": {}
-          }
-        },
-        "deprecated": false,
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
-    "/aluno/12345": {
+    "/aluno/{matricula}": {
       "get": {
         "tags": [
           "Alunos"
         ],
         "summary": "Listar aluno por matrícula",
         "operationId": "Listaralunopormatrícula",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matricula",
+            "description": "Busca aluno pela matrícula",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -402,16 +463,24 @@
             "bearer": []
           }
         ]
-      }
-    },
-    "/aluno/12358": {
+      },
       "put": {
         "tags": [
           "Alunos"
         ],
         "summary": "Atualizar aluno",
         "operationId": "Atualizaraluno",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matricula",
+            "description": "Atualiza aluno pela matrícula",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
         "requestBody": {
           "description": "",
           "content": {
@@ -423,21 +492,23 @@
                   },
                   {
                     "example": {
-                      "senha": "e644f8f3407061dde5cb69fbf4c816576af410c959b9c3fd387e6c6d739e50ee07eda2c7c884c8466ab600267d8affc9857ed59d6c0bc7ef7213eeeaac3dae3b",
-                      "nome": "Nami, A Gatuna",
-                      "email": "gatuna@aluno.com",
-                      "dataDeNascimento": "1999-07-03T03:00:00.000Z",
-                      "mae": "Bellemere"
+                      "matricula": 12365,
+                      "senha": "melhorespadachimdomundo",
+                      "nome": "Roronoa Zoro",
+                      "email": "r.zoro@aluno.com",
+                      "dataDeNascimento": "11/11/1998",
+                      "mae": "Roronoa Mãe"
                     }
                   }
                 ]
               },
               "example": {
-                "senha": "e644f8f3407061dde5cb69fbf4c816576af410c959b9c3fd387e6c6d739e50ee07eda2c7c884c8466ab600267d8affc9857ed59d6c0bc7ef7213eeeaac3dae3b",
-                "nome": "Nami, A Gatuna",
-                "email": "gatuna@aluno.com",
-                "dataDeNascimento": "1999-07-03T03:00:00.000Z",
-                "mae": "Bellemere"
+                "matricula": 12365,
+                "senha": "melhorespadachimdomundo",
+                "nome": "Roronoa Zoro",
+                "email": "r.zoro@aluno.com",
+                "dataDeNascimento": "11/11/1998",
+                "mae": "Roronoa Mãe"
               }
             }
           },
@@ -457,14 +528,24 @@
         ]
       }
     },
-    "/aluno/delete/12358": {
+    "/aluno/delete/{matricula}": {
       "delete": {
         "tags": [
           "Alunos"
         ],
         "summary": "DELETE aluno",
         "operationId": "DELETEaluno",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "matricula",
+            "description": "Deleta aluno pela matrícula",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -498,7 +579,7 @@
                   },
                   {
                     "example": {
-                      "ISBN": 159643,
+                      "isbn": 159643,
                       "nome": "Medicina Humana",
                       "autor": "Hiriluk",
                       "anoLancamento": "07/20/2018",
@@ -513,7 +594,7 @@
                 ]
               },
               "example": {
-                "ISBN": 159643,
+                "isbn": 159643,
                 "nome": "Medicina Humana",
                 "autor": "Hiriluk",
                 "anoLancamento": "07/20/2018",
@@ -542,14 +623,24 @@
         ]
       }
     },
-    "/livro/ffb9174d-5772-4bd8-ae34-d6f72d2be937": {
+    "/livro/{id}": {
       "put": {
         "tags": [
           "Livros"
         ],
         "summary": "Atualizar livro",
         "operationId": "Atualizarlivro",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Atualiza livro pelo ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "description": "",
           "content": {
@@ -561,31 +652,31 @@
                   },
                   {
                     "example": {
-                      "isbn": 178655,
-                      "nome": "Poneglyph Básico",
-                      "autor": "Academia de Poneglyph",
-                      "anoLancamento": "2020-01-01T03:00:00.000Z",
-                      "coAutor": null,
-                      "edicao": 3,
-                      "editora": "Ohara Editora",
-                      "estante": "1J",
+                      "isbn": 159643,
+                      "nome": "Medicina Humana",
+                      "autor": "Hiriluk",
+                      "anoLancamento": "07/20/2018",
+                      "coAutor": "Doctorine",
+                      "edicao": 2,
+                      "editora": "Reino de Drum",
+                      "estante": "3L",
                       "disponivel": true,
-                      "palavraChave": "HISTÓRIA"
+                      "palavraChave": "medicina"
                     }
                   }
                 ]
               },
               "example": {
-                "isbn": 178655,
-                "nome": "Poneglyph Básico",
-                "autor": "Academia de Poneglyph",
-                "anoLancamento": "2020-01-01T03:00:00.000Z",
-                "coAutor": null,
-                "edicao": 3,
-                "editora": "Ohara Editora",
-                "estante": "1J",
+                "isbn": 159643,
+                "nome": "Medicina Humana",
+                "autor": "Hiriluk",
+                "anoLancamento": "07/20/2018",
+                "coAutor": "Doctorine",
+                "edicao": 2,
+                "editora": "Reino de Drum",
+                "estante": "3L",
                 "disponivel": true,
-                "palavraChave": "HISTÓRIA"
+                "palavraChave": "medicina"
               }
             }
           },
@@ -605,14 +696,24 @@
         ]
       }
     },
-    "/livro/delete/bf092eee-039b-4abd-83d5-b3b5624a01c2": {
+    "/livro/delete/{id}": {
       "delete": {
         "tags": [
           "Livros"
         ],
-        "summary": "Del livro",
-        "operationId": "Dellivro",
-        "parameters": [],
+        "summary": "Deletar livro",
+        "operationId": "Deleletelivro",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Deleta livro pelo ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -684,14 +785,24 @@
         ]
       }
     },
-    "/periodico/4daa25ec-7938-4d8d-a091-980d30c2ab73": {
+    "/periodico/{id}": {
       "put": {
         "tags": [
           "Periódicos"
         ],
         "summary": "Atualizar periódico",
         "operationId": "Atualizarperiódico",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Atualiza periódico pelo ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "description": "",
           "content": {
@@ -703,25 +814,25 @@
                   },
                   {
                     "example": {
-                      "issn": 259641,
-                      "nome": "Clima na GrandLine",
-                      "anoLancamento": "2021-03-14T03:00:00.000Z",
-                      "edicao": 15,
+                      "issn": 254321,
+                      "nome": "Fofocas da GrandeLine",
+                      "anoLancamento": "01/04/2022",
+                      "edicao": 1,
                       "editora": "Weatheria",
                       "estante": "4A",
-                      "palavraChave": "TEMPO"
+                      "palavraChave": "Social"
                     }
                   }
                 ]
               },
               "example": {
-                "issn": 259641,
-                "nome": "Clima na GrandLine",
-                "anoLancamento": "2021-03-14T03:00:00.000Z",
-                "edicao": 15,
+                "issn": 254321,
+                "nome": "Fofocas da GrandeLine",
+                "anoLancamento": "01/04/2022",
+                "edicao": 1,
                 "editora": "Weatheria",
                 "estante": "4A",
-                "palavraChave": "TEMPO"
+                "palavraChave": "Social"
               }
             }
           },
@@ -741,14 +852,24 @@
         ]
       }
     },
-    "/periodico/delete/aeeb50c1-8cb1-404f-8c50-8c2faab8b017": {
+    "/periodico/delete/{id}": {
       "delete": {
         "tags": [
           "Periódicos"
         ],
         "summary": "Delete periódico.",
         "operationId": "Deleteperiódico.",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Deleta livro pelo ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "",
@@ -1000,7 +1121,6 @@
         "title": "AtualizarFUNCRequest",
         "required": [
           "matricula",
-          "senha",
           "nome",
           "email",
           "dataDeNascimento",
@@ -1013,9 +1133,6 @@
           "matricula": {
             "type": "integer",
             "format": "int32"
-          },
-          "senha": {
-            "type": "string"
           },
           "nome": {
             "type": "string"
@@ -1037,13 +1154,12 @@
           }
         },
         "example": {
-          "matricula": 54137,
-          "senha": "suuperfranky",
-          "nome": "Super Franky",
-          "email": "battlefranky@universidade.com",
-          "dataDeNascimento": "3/9/1985",
-          "mae": "Cutty MÃ£e",
-          "pai": "Cutty Pai",
+          "matricula": 54189,
+          "nome": "Tony Tony Chopper",
+          "email": "tony.choper@universidade.com",
+          "dataDeNascimento": "12/24/2004",
+          "mae": "Kureha",
+          "pai": "Hiriluk",
           "tipoFuncionario": "0"
         }
       },
@@ -1091,7 +1207,7 @@
       "AtualizaralunoRequest": {
         "title": "AtualizaralunoRequest",
         "required": [
-          "senha",
+          "matricula",
           "nome",
           "email",
           "dataDeNascimento",
@@ -1099,8 +1215,9 @@
         ],
         "type": "object",
         "properties": {
-          "senha": {
-            "type": "string"
+          "matricula": {
+            "type": "integer",
+            "format": "int32"
           },
           "nome": {
             "type": "string"
@@ -1116,17 +1233,17 @@
           }
         },
         "example": {
-          "senha": "e644f8f3407061dde5cb69fbf4c816576af410c959b9c3fd387e6c6d739e50ee07eda2c7c884c8466ab600267d8affc9857ed59d6c0bc7ef7213eeeaac3dae3b",
-          "nome": "Nami, A Gatuna",
-          "email": "gatuna@aluno.com",
-          "dataDeNascimento": "1999-07-03T03:00:00.000Z",
-          "mae": "Bellemere"
+          "matricula": 12365,
+          "nome": "Roronoa Zoro",
+          "email": "r.zoro@aluno.com",
+          "dataDeNascimento": "11/11/1998",
+          "mae": "Roronoa Mãe"
         }
       },
       "CriarlivroRequest": {
         "title": "CriarlivroRequest",
         "required": [
-          "ISBN",
+          "isbn",
           "nome",
           "autor",
           "anoLancamento",
@@ -1139,7 +1256,7 @@
         ],
         "type": "object",
         "properties": {
-          "ISBN": {
+          "isbn": {
             "type": "integer",
             "format": "int32"
           },
@@ -1173,7 +1290,7 @@
           }
         },
         "example": {
-          "ISBN": 159643,
+          "isbn": 159643,
           "nome": "Medicina Humana",
           "autor": "Hiriluk",
           "anoLancamento": "07/20/2018",
