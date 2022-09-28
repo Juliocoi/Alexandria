@@ -21,7 +21,6 @@ class AtualizarFuncionario{
             }
 
         } catch (error) {
-            console.log(error);
             return {erro: error.message};
         }
     }

@@ -6,11 +6,7 @@ class DeleteAlunoService{
 
   async delete(matricula){
     try {
-      const aluno = await ModelAluno.findOne({where: {matricula: matricula}})
-
-      if(!aluno){
-        return {mensagem: 'Aluno não encontrado'}
-      }
+      const aluno = await ModelAluno.findOne({where: {matricula}})
 
       const alunoDeletado = await aluno.destroy();
       return {mensagem: "Aluno deletado com sucesso"}

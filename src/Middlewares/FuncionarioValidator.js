@@ -1,8 +1,6 @@
 import * as yup from 'yup';
 
-const regex = /^[A-Za-z]+((\s)?([A-Za-z])+)*$/g
-
-
+const regex = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]+$/;
 
 export default async function FuncionarioValidator(request, response, next){
     const schema = yup.object().shape({

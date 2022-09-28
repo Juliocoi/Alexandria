@@ -3,17 +3,16 @@ class DeleteFuncionarioService {
 
   constructor(){};
 
-  async delete(funcionariomatricula){
+  async delete(matricula) {
     try {
-      const funcionario = await ModelFuncionario.findOne({where: {matricula: funcionariomatricula}});
-      const funcionarioDeletado = await funcionario.destroy();
+      const funcionario = await ModelFuncionario.findOne({ where: { matricula} })
 
+      const funcionarioDeletado = await funcionario.destroy();
+      
     } catch (error) {
-      console.log(error);
-      return {Message: error.message}
+      return { erro: error.message };
     };
-    
-  }
+  };
 }
 
 export default DeleteFuncionarioService;

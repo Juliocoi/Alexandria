@@ -2,33 +2,32 @@ import ModelAluno from '../../models/usuario/ModelAluno';
 
 class AtualizarAlunoService {
 
-    constructor() {};
+  constructor(){};
 
-    async atualizar(matricula, senha, nome, email, dataDeNascimento, mae, pai) {
+  async atualizar(matricula, senha, nome, email, dataDeNascimento, mae, pai) {
 
-        try {
-            const aluno = await ModelAluno.findOne({where: {matricula: matricula}});
+    try {
+      const aluno = await ModelAluno.findOne({ where: { matricula: matricula } });
 
-            if(!aluno){
-                return { menssagem: 'Aluno não encontrado.'}
-            }
+      if (!aluno) {
+        return { menssagem: 'Aluno não encontrado.' }
+      }
 
-            const [alunoAtualizado] = await ModelAluno.update(
-                { senha, nome, email, dataDeNascimento, mae, pai}, { where: { matricula } });
+      const [alunoAtualizado] = await ModelAluno.update(
+        { senha, nome, email, dataDeNascimento, mae, pai }, { where: { matricula } });
 
-            if (alunoAtualizado === 0) {
-                return { mensagem: "As alterações prentendidas já existem em nosso servidor" };
+      if (alunoAtualizado === 0) {
+        return { mensagem: "As alterações prentendidas já existem em nosso servidor" };
 
-            } else {
+      } else {
 
-                return { matricula, senha, nome, email, dataDeNascimento, mae, pai};
-            }
-        } catch (error) {
-            console.log(error);
-            return { erro: error.message }
+        return { matricula, senha, nome, email, dataDeNascimento, mae, pai };
+      }
+    } catch (error) {
+      return { erro: error.message }
 
-        };
     };
+  };
 }
 
 export default AtualizarAlunoService;

@@ -2,17 +2,21 @@ import DeleteFuncionarioService from '../../services/funcionario/DeleteFuncionar
 
 class DeleteFuncionarioController {
 
-    constructor() {
-        this.service = new DeleteFuncionarioService();
-    };
+  constructor() {
+    this.service = new DeleteFuncionarioService();
+  };
 
-    async delete(request, response){
-        const { matricula } = request.params;
+  async delete(request, response) {
+    const { matricula } = request.params;
 
-        const deletado = await this.service.delete(matricula);
+    // if (!matricula) {
+    //   return response.status(404).json({ 'Erro': "Você precisa indicar uma matrícula válida1." });
+    // }
 
-        return response.status(200).json({Mensagem: "Funcionário deletado com sucesso"});
-    }
+    const deletado = await this.service.delete(matricula);
+
+    return response.status(200).json({ Mensagem: "Funcionário deletado com sucesso" });
+  }
 }
 
 export default DeleteFuncionarioController;

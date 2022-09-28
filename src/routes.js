@@ -32,8 +32,12 @@ import alunoValidator from './Middlewares/AlunoValidator';
 import funcionarioValidator from './Middlewares/FuncionarioValidator';
 import livroValidator from './Middlewares/LivroValidator';
 import periodicoValidator from './Middlewares/PeriodicoValidator';
+import  swagger  from 'swagger-ui-express';
+import swaggerjson from './docs/swagger.json'
 
 const routes = new Router();
+
+routes.use('/docs', swagger.serve, swagger.setup(swaggerjson) )
 
 const listLivroController = new ListLivroController();
 
@@ -66,7 +70,7 @@ const updateFuncionarioController = new UpdateFuncionarioController();
 const deleteFuncionarioController = new DeleteFuncionarioController();
 const createFuncionarioController = new CreateFuncionarioController();
 
-routes.post('/funcionario', (req, resp) => createFuncionarioController.create(req, resp));
+routes.post('/funcionario', funcionarioValidator, (req, resp) => createFuncionarioController.create(req, resp));
 routes.get('/funcionarios', (req, resp) => listAllFuncionarioController.index(req, resp));
 routes.get('/funcionario/:matricula', (req, resp) => listAllFuncionarioController.listarFuncionariosMatricula(req, resp));
 routes.put('/funcionario/:matricula', (req, resp) => updateFuncionarioController.update(req, resp));
@@ -76,7 +80,7 @@ const createLivroController = new CreateLivroController();
 const updateLivroController = new UpdateLivroController();
 const deleteLivrosController = new DeleteLivrosController();
 
-routes.post('/livro', (req, resp) => createLivroController.create(req, resp));
+routes.post('/livro', livroValidator, (req, resp) => createLivroController.create(req, resp));
 routes.put('/livro/:id', (req, resp) => updateLivroController.update(req, resp));
 routes.delete('/livro/delete/:id', (req, resp) => deleteLivrosController.delete(req, resp));
 
@@ -84,7 +88,7 @@ const createPeriodicoController = new CreatePeriodicoController();
 const updatePeriodicoController = new UpdatePeriodicoController();
 const deletePeriodicoController = new DeletePeriodicoController();
 
-routes.post('/periodico', (req, resp) => createPeriodicoController.create(req, resp));
+routes.post('/periodico', periodicoValidator, (req, resp) => createPeriodicoController.create(req, resp));
 routes.put('/periodico/:id', (req, resp) => updatePeriodicoController.update(req, resp));
 routes.delete('/periodico/delete/:id', (req, resp) => deletePeriodicoController.delete(req, resp));
 

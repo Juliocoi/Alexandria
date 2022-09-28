@@ -25,7 +25,6 @@ class CreateAlunoService {
       return newAluno;
       
     } catch (error) {
-      console.log(error)
       return { erro: error.message };
     };
 
