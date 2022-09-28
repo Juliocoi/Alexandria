@@ -55,20 +55,20 @@ cp .env.example .env
 
 Adicione as seguintes variáveis de ambiente no arquivo `.env` com seus respectivos valores
 
-```json
+```bash
 ##Porta do servidor
-API_PORT =
+API_PORT = 3030
 ##MySQL
-DB_TYPE = 
-DB_PORT = 
-DB_HOST = 
-DB_USERNAME = 
-DB_PASSWORD = 
-DB_DATABASE = 
-##Criptografia
-PASSWORD_SALT=
+DB_TYPE = mysql
+DB_PORT = 3306
+DB_HOST = localhost
+DB_USERNAME = root
+DB_PASSWORD = root
+DB_DATABASE = alexandria 
+## CRIPTOGRAFIA
+PASSWORD_SALT='@A5cA1234@#$%mame'
 #JWT
-JWT_PRIVATE_KEY=
+JWT_PRIVATE_KEY=a07bda8fd5e3946b462b4c3d860a36f6b4d
 ```
 
 ## :books: Comandos
